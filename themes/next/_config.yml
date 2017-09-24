@@ -524,7 +524,7 @@ local_search:
 gitment:
   enable: true
   githubID: ihanfeng
-  repo: gitment
+  repo: ihanfeng.github.io
   ClientID: 5883cfc50f5bbe6290a5
   ClientSecret: a4a795fcd920a33fff22ae134b01942939a49341
   lazy: true
