@@ -1,5 +1,5 @@
 ---
-title: How to install gradle on windows 10
+title: 如何在window10下安装Gradle
 date: 2017-09-29 22:00:00
 tags:
   - Gradle
@@ -20,6 +20,7 @@ Gradle是一个基于JVM的构建工具，它提供了：
 * 基于Groovy，build脚本使用Groovy编写
 * 有广泛的领域模型支持构建
 
+<!-- more  -->
 
 # Gradle 概述
 1. 基于声明和基于约定的构建。
