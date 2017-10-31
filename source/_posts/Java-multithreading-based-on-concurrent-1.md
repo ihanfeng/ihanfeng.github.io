@@ -15,6 +15,8 @@ categories:
 * 继承Thread类，并重写run()方法；
 * 实现Runnable接口，覆盖接口的run()方法；
 
+<!-- more -->
+
 # 探究Thread类的run()源码
 
 打开Thread类的定义，我们发现run()的实现如下：
