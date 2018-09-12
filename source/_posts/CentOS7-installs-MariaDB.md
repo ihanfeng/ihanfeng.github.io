@@ -1,12 +1,14 @@
 ---
 title: CentOS7安装MariaDB
-date: 2017-11-11 11:37:20
 tags:
   - 数据库
   - MariaDB
 categories:
   - 数据库
   - MariaDB
+abbrlink: 11326
+date: 2017-11-11 11:37:20
+copyright: ture
 ---
 
 # 摘要

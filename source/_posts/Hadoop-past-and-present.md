@@ -1,6 +1,5 @@
 ---
 title: Hadoop生态系统
-date: 2017-11-07 19:45:00
 tags:
   - 大数据
   - Hadoop
@@ -17,6 +16,8 @@ tags:
 categories:
   - 大数据
   - Hadoop
+abbrlink: 41053
+date: 2017-11-07 19:45:00
 ---
 
 # 认识Hadoop

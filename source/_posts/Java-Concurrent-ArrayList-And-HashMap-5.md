@@ -1,6 +1,5 @@
 ---
 title: 【Java并发】之高并发下ArrayList和HashMap运用(5)
-date: 2017-10-31 22:59:03
 tags:
   - JAVA
   - JAVA并发
@@ -8,6 +7,8 @@ tags:
 categories:
   - JAVA
   - JAVA并发
+abbrlink: 41202
+date: 2017-10-31 22:59:03
 ---
 
 # 摘要

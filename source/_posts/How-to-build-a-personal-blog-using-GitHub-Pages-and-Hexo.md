@@ -1,11 +1,12 @@
 ---
 title: 使用 GitHub Pages and Hexo 搭建免费个人博客
-date: 2017-09-24 14:30:26
 tags:
   - github
   - hexo
 categories:
   - Hexo
+abbrlink: 34009
+date: 2017-09-24 14:30:26
 ---
 # Hexo介绍
 

@@ -1,10 +1,11 @@
 ---
 title: 如何在window10下安装Gradle
-date: 2017-09-29 22:00:00
 tags:
   - Gradle
 categories:
   - Gradle
+abbrlink: 2989
+date: 2017-09-29 22:00:00
 ---
 # Gradle介绍
 

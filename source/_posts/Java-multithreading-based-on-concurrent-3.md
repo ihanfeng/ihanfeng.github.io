@@ -1,6 +1,5 @@
 ---
 title: 【Java并发】之多线程wait()和notify()(3)
-date: 2017-10-31 20:53:23
 tags:
   - JAVA
   - JAVA并发
@@ -8,6 +7,8 @@ tags:
 categories:
   - JAVA
   - JAVA并发
+abbrlink: 1708
+date: 2017-10-31 20:53:23
 ---
 
 # 概要

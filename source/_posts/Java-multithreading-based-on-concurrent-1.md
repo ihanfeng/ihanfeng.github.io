@@ -1,12 +1,13 @@
 ---
 title: 【Java并发】之多线程基础(1)
-date: 2017-10-30 22:08:44
 tags:
   - JAVA
   - JAVA并发
 categories:
   - JAVA
   - JAVA并发
+abbrlink: 16139
+date: 2017-10-30 22:08:44
 ---
 # 简介
 

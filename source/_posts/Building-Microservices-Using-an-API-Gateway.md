@@ -1,6 +1,5 @@
 ---
 title: 微服务实战（二）：使用API Gateway
-date: 2017-11-05 20:55:24
 tags:
   - 微服务
   - SpringCloud
@@ -8,6 +7,8 @@ tags:
   - API gateway
 categories:
   - 微服务
+abbrlink: 7302
+date: 2017-11-05 20:55:24
 ---
 # 摘要
 

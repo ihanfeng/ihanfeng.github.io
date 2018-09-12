@@ -1,6 +1,5 @@
 ---
 title: JAVA虚拟机规范 (JAVA SE 8 Edition)
-date: 2017-10-11 20:00:00
 tags:
   - JAVA
   - 虚拟机
@@ -8,6 +7,8 @@ tags:
   - JAVA8
 categories:
   - JAVA
+abbrlink: 35047
+date: 2017-10-11 20:00:00
 ---
 # 前言
 

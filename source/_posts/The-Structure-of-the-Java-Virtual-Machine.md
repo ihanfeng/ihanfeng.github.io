@@ -1,6 +1,5 @@
 ---
 title: JAVA虚拟机结构
-date: 2017-10-11 21:30:00
 tags:
   - JAVA
   - 虚拟机
@@ -8,6 +7,8 @@ tags:
   - JAVA8
 categories:
   - JAVA
+abbrlink: 54746
+date: 2017-10-11 21:30:00
 ---
 ## class文件格式
 

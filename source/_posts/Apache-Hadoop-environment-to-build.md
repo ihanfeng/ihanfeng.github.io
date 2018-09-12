@@ -1,7 +1,5 @@
-
 ---
 title: Hadoop环境搭建
-date: 2017-11-07 21:49:23
 tags:
   - 大数据
   - Hadoop
@@ -18,6 +16,8 @@ tags:
 categories:
   - 大数据
   - Hadoop
+abbrlink: 62268
+date: 2017-11-07 21:49:23
 ---
 # 摘要
 
