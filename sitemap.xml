@@ -2,6 +2,146 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhujunwang.cn/2017/11/11/CentOS7-installs-MariaDB/</loc>
+    
+    <lastmod>2018-09-12T15:18:31.387Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/11/05/introduction-to-microservices/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.644Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/10/11/The-Structure-of-the-Java-Virtual-Machine/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.641Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/10/11/The-Java-Virtual-Machine-Specification-JAVA-SE-8-Edition/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.639Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.637Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/11/05/Refactoring-a-Monolith-into-Microservices/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.634Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/10/31/Java-multithreading-based-on-concurrent-4/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.631Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/10/31/Java-multithreading-based-on-concurrent-3/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.627Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/10/30/Java-multithreading-based-on-concurrent-2/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.625Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/10/30/Java-multithreading-based-on-concurrent-1/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.622Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/11/01/JDK-concurrent-synchronization-control-6/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.620Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/10/31/Java-Concurrent-ArrayList-And-HashMap-5/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.617Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/09/29/How-to-install-gradle-on-windows-10/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.613Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/11/07/Hadoop-past-and-present/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.610Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/09/24/How-to-build-a-personal-blog-using-GitHub-Pages-and-Hexo/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.608Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/11/05/Event-Driven-Data-Management-for-Microservices/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.605Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.603Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Using-an-API-Gateway/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.597Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.595Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/2017/11/07/Apache-Hadoop-environment-to-build/</loc>
+    
+    <lastmod>2018-09-12T14:28:41.592Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.zhujunwang.cn/tags/index.html</loc>
     
     <lastmod>2018-09-12T07:22:48.313Z</lastmod>
@@ -19,146 +159,6 @@
     <loc>http://blog.zhujunwang.cn/about/index.html</loc>
     
     <lastmod>2018-09-12T07:22:48.298Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/11/05/introduction-to-microservices/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.252Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/10/11/The-Structure-of-the-Java-Virtual-Machine/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.250Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/10/11/The-Java-Virtual-Machine-Specification-JAVA-SE-8-Edition/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.248Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.231Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/11/05/Refactoring-a-Monolith-into-Microservices/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.209Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/10/31/Java-multithreading-based-on-concurrent-4/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.206Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/10/31/Java-multithreading-based-on-concurrent-3/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.204Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/10/30/Java-multithreading-based-on-concurrent-2/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.188Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/10/30/Java-multithreading-based-on-concurrent-1/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.186Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/10/31/Java-Concurrent-ArrayList-And-HashMap-5/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.178Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/11/01/JDK-concurrent-synchronization-control-6/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.176Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/09/29/How-to-install-gradle-on-windows-10/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.174Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/09/24/How-to-build-a-personal-blog-using-GitHub-Pages-and-Hexo/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.164Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/11/07/Hadoop-past-and-present/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.128Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/11/05/Event-Driven-Data-Management-for-Microservices/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.092Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.072Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/11/11/CentOS7-installs-MariaDB/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.070Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Using-an-API-Gateway/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.060Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.043Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/2017/11/07/Apache-Hadoop-environment-to-build/</loc>
-    
-    <lastmod>2018-09-12T07:22:48.002Z</lastmod>
     
   </url>
   
