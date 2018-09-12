@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="微服务,SpringCloud,进程通信,微服务架构," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="码农进阶之路" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="摘要这是采用微服务架构创建自己应用系列第三篇文章。第一篇介绍了微服务架构模式，和单体式模式进行了比较，并且讨论了使用微服务架构的优缺点。第二篇描述了采用微服务架构应用客户端之间如何采用API Gateway方式进行通信。在这篇文章中，我们将讨论系统服务之间如何通信。 简介在单体式应用中，各个模块之间的调用是通过编程语言级别的方法或者函数来实现的。但是一个基于微服务的分布式应用是运行在多台机器上的。">
+<meta name="keywords" content="微服务,SpringCloud,进程通信,微服务架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微服务实战（三）：深入微服务架构的进程间通信">
+<meta property="og:url" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/index.html">
+<meta property="og:site_name" content="码农进阶之路">
+<meta property="og:description" content="摘要这是采用微服务架构创建自己应用系列第三篇文章。第一篇介绍了微服务架构模式，和单体式模式进行了比较，并且讨论了使用微服务架构的优缺点。第二篇描述了采用微服务架构应用客户端之间如何采用API Gateway方式进行通信。在这篇文章中，我们将讨论系统服务之间如何通信。 简介在单体式应用中，各个模块之间的调用是通过编程语言级别的方法或者函数来实现的。但是一个基于微服务的分布式应用是运行在多台机器上的。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/1fc9e63825109680c7138b786c6e1c24.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/ab63cad76d0743e8a77c423eda919a24.jpg">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/6c6cc8293d2a8334327902edcd32167d.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/4eb9c81e3bb9606f75eccb4f71cc84cb.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/0855ed5ec97708bac54acd80af43641e.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/188f16abf54a6fc3446d51dc3625e571.png">
+<meta property="og:updated_time" content="2018-09-12T07:22:48.043Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微服务实战（三）：深入微服务架构的进程间通信">
+<meta name="twitter:description" content="摘要这是采用微服务架构创建自己应用系列第三篇文章。第一篇介绍了微服务架构模式，和单体式模式进行了比较，并且讨论了使用微服务架构的优缺点。第二篇描述了采用微服务架构应用客户端之间如何采用API Gateway方式进行通信。在这篇文章中，我们将讨论系统服务之间如何通信。 简介在单体式应用中，各个模块之间的调用是通过编程语言级别的方法或者函数来实现的。但是一个基于微服务的分布式应用是运行在多台机器上的。">
+<meta name="twitter:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/1fc9e63825109680c7138b786c6e1c24.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/"/>
+
+
+
+
+
+  <title>微服务实战（三）：深入微服务架构的进程间通信 | 码农进阶之路</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6e4364ec0c330bb3b61b6372b68b5cc3";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">码农进阶之路</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">行走在琥玖的码农，专注JAVA领域相关技术</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/atom.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hanfeng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="码农进阶之路">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">微服务实战（三）：深入微服务架构的进程间通信</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-05T20:55:41+08:00">
+                2017-11-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/微服务/" itemprop="url" rel="index">
+                    <span itemprop="name">微服务</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/" class="leancloud_visitors" data-flag-title="微服务实战（三）：深入微服务架构的进程间通信">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>这是采用微服务架构创建自己应用系列第三篇文章。第一篇介绍了微服务架构模式，和单体式模式进行了比较，并且讨论了使用微服务架构的优缺点。第二篇描述了采用微服务架构应用客户端之间如何采用API Gateway方式进行通信。在这篇文章中，我们将讨论系统服务之间如何通信。</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>在单体式应用中，各个模块之间的调用是通过编程语言级别的方法或者函数来实现的。但是一个基于微服务的分布式应用是运行在多台机器上的。一般来说，每个服务实例都是一个进程。因此，如下图所示，服务之间的交互必须通过进程间通信（IPC）来实现。</p>
+<a id="more"></a>
+<img src="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/1fc9e63825109680c7138b786c6e1c24.png">
+<p>后面我们将会详细介绍IPC技术，现在我们先来看下设计相关的问题。</p>
+<h1 id="交互模式"><a href="#交互模式" class="headerlink" title="交互模式"></a>交互模式</h1><p>当为某一个服务选择IPC时，首先需要考虑服务之间如何交互。客户端和服务器之间有很多的交互模式，我们可以从两个维度进行归类。第一个维度是一对一还是一对多：</p>
+<ul>
+<li>一对一：每个客户端请求有一个服务实例来响应。</li>
+<li>一对多：每个客户端请求有多个服务实例来响应</li>
+</ul>
+<p>第二个维度是这些交互式同步还是异步：</p>
+<ul>
+<li>同步模式：客户端请求需要服务端即时响应，甚至可能由于等待而阻塞。</li>
+<li>异步模式：客户端请求不会阻塞进程，服务端的响应可以是非即时的。</li>
+</ul>
+<p>下表显示了不同交互模式：</p>
+<img src="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/ab63cad76d0743e8a77c423eda919a24.jpg">
+<p>一对一的交互模式有以下几种方式：</p>
+<ul>
+<li>请求/响应：一个客户端向服务器端发起请求，等待响应。客户端期望此响应即时到达。在一个基于线程的应用中，等待过程可能造成线程阻塞。</li>
+<li>通知（也就是常说的单向请求）：一个客户端请求发送到服务端，但是并不期望服务端响应。</li>
+<li>请求/异步响应：客户端发送请求到服务端，服务端异步响应请求。客户端不会阻塞，而且被设计成默认响应不会立刻到达。</li>
+</ul>
+<p>一对多的交互模式有以下几种方式：</p>
+<ul>
+<li><p>发布/ 订阅模式：客户端发布通知消息，被零个或者多个感兴趣的服务消费。</p>
+</li>
+<li><p>发布/异步响应模式：客户端发布请求消息，然后等待从感兴趣服务发回的响应。</p>
+</li>
+</ul>
+<p>每个服务都是以上这些模式的组合，对某些服务，一个IPC机制就足够了；而对另外一些服务则需要多种IPC机制组合。下图展示了在一个打车服务请求中服务之间是如何通信的。</p>
+<img src="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/6c6cc8293d2a8334327902edcd32167d.png">
+<p>上图中的服务通信使用了通知、请求/响应、发布/订阅等方式。例如，乘客通过移动端给『行程管理服务』发送通知，希望申请一次出租服务。『行程管理服务』发送请求/响应消息给『乘客服务』以确认乘客账号是有效的。紧接着创建此次行程，并用发布/订阅交互模式通知其他服务，包括定位可用司机的调度服务。</p>
+<p>现在我们了解了交互模式，接下来我们一起来看看如何定义API。</p>
+<h1 id="定义API"><a href="#定义API" class="headerlink" title="定义API"></a>定义API</h1><p>API是服务端和客户端之间的契约。不管选择了什么样的IPC机制，重要的是使用某种交互式定义语言（IDL）来精确定义一个服务的API。甚至有一些关于使用API first的方法（API-first approach）来定义服务的很好的理由。在开发之前，你需要先定义服务的接口，并与客户端开发者详细讨论确认。这样的讨论和设计会大幅度提到API的可用度以及满意度。</p>
+<p>在本文后半部分你将会看到，API定义实质上依赖于选择哪种IPC。如果使用消息机制，API则由消息频道（channel）和消息类型构成；如果选择使用HTTP机制，API则由URL和请求、响应格式构成。后面将会详细描述IDL。</p>
+<h1 id="API的演化"><a href="#API的演化" class="headerlink" title="API的演化"></a>API的演化</h1><p>服务端API会不断变化。在一个单体式应用中经常会直接修改API，然后更新给所有的调用者。而在基于微服务架构应用中，这很困难，即使只有一个服务使用这个API，不可能强迫用户跟服务端保持同步更新。另外，开发者可能会尝试性的部署新版本的服务，这个时候，新旧服务就会同事运行。你需要知道如何处理这些问题。</p>
+<p>你如何处理API变化，这依赖于这些变化有多大。某些改变是微小的，并且可以和之前版本兼容。比如，你可能只是为某个请求和响应添加了一个属性。设计客户端和服务端时候应该遵循健壮性原理，这很重要。客户端使用旧版API应该也能和新版本一起工作。服务端仍然提供默认响应值，客户端忽略此版本不需要的响应。使用IPC机制和消息格式对于API演化很有帮助。</p>
+<p>但是有时候，API需要进行大规模的改动，并且可能与之前版本不兼容。因为你不可能强制让所有的客户端立即升级，所以支持老版本客户端的服务还需要再运行一段时间。如果你正在使用基于基于HTTP机制的IPC，例如REST，一种解决方案是把版本号嵌入到URL中。每个服务都可能同时处理多个版本的API。或者，你可以部署多个实例，每个实例负责处理一个版本的请求。</p>
+<h1 id="处理部分失败"><a href="#处理部分失败" class="headerlink" title="处理部分失败"></a>处理部分失败</h1><p>在上一篇关于API gateway的文章中，我们了解到分布式系统中部分失败是普遍存在的问题。因为客户端和服务端是都是独立的进程，一个服务端有可能因为故障或者维护而停止服务，或者此服务因为过载停止或者反应很慢。</p>
+<p>考虑这篇文章中描述的部分失败的场景。假设推荐服务无法响应请求，那客户端就会由于等待响应而阻塞，这不仅会给客户带来很差的体验，而且在很多应用中还会占用很多资源，比如线程，以至于到最后由于等待响应被阻塞的客户端越来越多，线程资源被耗费完了。如下图所示：</p>
+<img src="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/4eb9c81e3bb9606f75eccb4f71cc84cb.png">
+<p>为了预防这种问题，设计服务时候必须要考虑部分失败的问题。</p>
+<p>Netfilix提供了一个比较好的解决方案，具体的应对措施包括：</p>
+<p>• 网络超时：当等待响应时，不要无限期的阻塞，而是采用超时策略。使用超时策略可以确保资源不会无限期的占用。<br>• 限制请求的次数：可以为客户端对某特定服务的请求设置一个访问上限。如果请求已达上限，就要立刻终止请求服务。<br>• 断路器模式（Circuit Breaker Pattern）：记录成功和失败请求的数量。如果失效率超过一个阈值，触发断路器使得后续的请求立刻失败。如果大量的请求失败，就可能是这个服务不可用，再发请求也无意义。在一个失效期后，客户端可以再试，如果成功，关闭此断路器。<br>• 提供回滚：当一个请求失败后可以进行回滚逻辑。例如，返回缓存数据或者一个系统默认值。</p>
+<p>Netflix Hystrix是一个实现相关模式的开源库。如果使用JVM，推荐考虑使用Hystrix。而如果使用非JVM环境，你可以使用类似功能的库。</p>
+<h1 id="IPC技术"><a href="#IPC技术" class="headerlink" title="IPC技术"></a>IPC技术</h1><p>现在有很多不同的IPC技术。服务之间的通信可以使用同步的请求/响应模式，比如基于HTTP的REST或者Thrift。另外，也可以选择异步的、基于消息的通信模式，比如AMQP或者STOMP。除以之外，还有其它的消息格式供选择，比如JSON和XML，它们都是可读的，基于文本的消息格式。当然，也还有二进制格式（效率更高）的，比如Avro和Protocol Buffer。接下来我们将会讨论异步的IPC模式和同步的IPC模式，首先来看异步的。<br>异步的，基于消息通信</p>
+<p>当使用基于异步交换消息的进程通信方式时，一个客户端通过向服务端发送消息提交请求。如果服务端需要回复，则会发送另外一个独立的消息给客户端。因为通信是异步的，客户端不会因为等待而阻塞，相反，客户端理所当然的认为响应不会立刻接收到。</p>
+<p>一个消息由头部（元数据例如发送方）和消息体构成。消息通过channel发送，任何数量的生产者都可以发送消息到channel，同样的，任何数量的消费者都可以从渠道中接受数据。有两类channel，点对点和发布/订阅。点对点channel会把消息准确的发送到某个从channel读取消息的消费者，服务端使用点对点来实现之前提到的一对一交互模式；而发布/订阅则把消息投送到所有从channel读取数据的消费者，服务端使用发布/订阅channel来实现上面提到的一对多交互模式。</p>
+<p>下图展示了打车软件如何使用发布/订阅：</p>
+<img src="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/0855ed5ec97708bac54acd80af43641e.png">
+<p>行程管理服务在发布-订阅channel内创建一个行程消息，并通知调度服务有一个新的行程请求，调度服务发现一个可用的司机然后向发布-订阅channel写入司机建议消息（Driver Proposed message）来通知其他服务。</p>
+<p>有很多消息系统可以选择，最好选择一种支持多编程语言的。一些消息系统支持标准协议，例如AMQP和STOMP。其他消息系统则使用独有的协议，有大量开源消息系统可选，比如RabbitMQ、Apache Kafka、Apache ActiveMQ和NSQ。它们都支持某种形式的消息和channel，并且都是可靠的、高性能和可扩展的；然而，它们的消息模型完全不同。</p>
+<p>使用消息机制有很多优点：</p>
+<ul>
+<li><p>解耦客户端和服务端：客户端只需要将消息发送到正确的channel。客户端完全不需要了解具体的服务实例，更不需要一个发现机制来确定服务实例的位置。</p>
+</li>
+<li><p>Message Buffering：在一个同步请求/响应协议中，例如HTTP，所有的客户端和服务端必须在交互期间保持可用。而在消息模式中，消息broker将所有写入channel的消息按照队列方式管理，直到被消费者处理。也就是说，在线商店可以接受客户订单，即使下单系统很慢或者不可用，只要保持下单消息进入队列就好了。</p>
+</li>
+<li><p>弹性客户端-服务端交互：消息机制支持以上说的所有交互模式。</p>
+</li>
+<li><p>直接进程间通信：基于RPC机制，试图唤醒远程服务看起来跟唤醒本地服务一样。然而，因为物理定律和部分失败可能性，他们实际上非常不同。消息使得这些不同非常明确，开发者不会出现问题。</p>
+</li>
+</ul>
+<p>然而，消息机制也有自己的缺点：</p>
+<ul>
+<li><p>额外的操作复杂性：消息系统需要单独安装、配置和部署。消息broker（代理）必须高可用，否则系统可靠性将会受到影响。</p>
+</li>
+<li><p>实现基于请求/响应交互模式的复杂性：请求/响应交互模式需要完成额外的工作。每个请求消息必须包含一个回复渠道ID和相关ID。服务端发送一个包含相关ID的响应消息到channel中，使用相关ID来将响应对应到发出请求的客户端。也许这个时候，使用一个直接支持请求/响应的IPC机制会更容易些。</p>
+</li>
+</ul>
+<p>现在我们已经了解了基于消息的IPC，接下来我们来看看基于请求/响应模式的IPC。</p>
+<p>同步的，基于请求/响应的IPC</p>
+<p>当使用一个同步的，基于请求/响应的IPC机制，客户端向服务端发送一个请求，服务端处理请求，返回响应。一些客户端会由于等待服务端响应而被阻塞，而另外一些客户端也可能使用异步的、基于事件驱动的客户端代码（Future或者Rx Observable的封装）。然而，不像使用消息机制，客户端需要响应及时返回。这个模式中有很多可选的协议，但最常见的两个协议是REST和Thrift。首先我们来看下REST。</p>
+<h1 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h1><p>现在很流行使用RESTful风格的API。REST是基于HTTP协议的。另外，一个需要理解的比较重要的概念是，REST是一个资源，一般代表一个业务对象，比如一个客户或者一个产品，或者一组商业对象。REST使用HTTP语法协议来修改资源，一般通过URL来实现。举个例子，GET请求返回一个资源的简单信息，响应格式通常是XML或者JSON对象格式。POST请求会创建一个新资源，PUT请求更新一个资源。这里引用下REST之父Roy Fielding说的：</p>
+<blockquote>
+<p>当需要一个整体的、重视模块交互可扩展性、接口概括性、组件部署独立性和减小延迟、提供安全性和封装性的系统时，REST可以提供这样一组满足需求的架构。</p>
+</blockquote>
+<p>下图展示了打车软件是如何使用REST的。</p>
+<img src="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/188f16abf54a6fc3446d51dc3625e571.png">
+<p>乘客通过移动端向行程管理服务的/trips资源提交了一个POST请求。行程管理服务收到请求之后，会发送一个GET请求到乘客管理服务以获取乘客信息。当确认乘客信息之后，紧接着会创建一个行程，并向移动端返回201（译者注：状态码）响应。</p>
+<p>很多开发者都表示他们基于HTTP的API是RESTful的。但是，如同Fielding在他的博客中所说，这些API可能并不都是RESTful的。Leonard Richardson为REST定义了一个成熟度模型，具体包含以下4个层次（摘自IBM）：</p>
+<ul>
+<li>第一个层次（Level 0）的 Web 服务只是使用 HTTP 作为传输方式，实际上只是远程方法调用（RPC）的一种具体形式。SOAP 和 XML-RPC 都属于此类。</li>
+<li>第二个层次（Level 1）的 Web 服务引入了资源的概念。每个资源有对应的标识符和表达。</li>
+<li>第三个层次（Level 2）的 Web 服务使用不同的 HTTP 方法来进行不同的操作，并且使用 HTTP 状态码来表示不同的结果。如 HTTP GET 方法来获取资源，HTTP DELETE 方法来删除资源。</li>
+<li>第四个层次（Level 3）的 Web 服务使用 HATEOAS。在资源的表达中包含了链接信息。客户端可以根据链接来发现可以执行的动作。</li>
+</ul>
+<p>使用基于HTTP的协议有如下好处：</p>
+<p>• HTTP非常简单并且大家都很熟悉。<br>• 可以使用浏览器扩展（比如Postman）或者curl之类的命令行来测试API。<br>• 内置支持请求/响应模式的通信。<br>• HTTP对防火墙友好的。<br>• 不需要中间代理，简化了系统架构。</p>
+<p>不足之处包括：</p>
+<ul>
+<li>只支持请求/响应模式交互。可以使用HTTP通知，但是服务端必须一直发送HTTP响应才行。</li>
+<li>因为客户端和服务端直接通信（没有代理或者buffer机制），在交互期间必须都在线。</li>
+<li>客户端必须知道每个服务实例的URL。如之前那篇关于API Gateway的文章所述，这也是个烦人的问题。客户端必须使用服务实例发现机制。</li>
+</ul>
+<p>开发者社区最近重新发现了RESTful API接口定义语言的价值。于是就有了一些RESTful风格的服务框架，包括RAML和Swagger。一些IDL，例如Swagger允许定义请求和响应消息的格式。其它的，例如RAML，需要使用另外的标识，例如JSON Schema。对于描述API，IDL一般都有工具来定义客户端和服务端骨架接口。</p>
+<h1 id="Thrift"><a href="#Thrift" class="headerlink" title="Thrift"></a>Thrift</h1><p>Apache Thrift是一个很有趣的REST的替代品。它是Facebook实现的一种高效的、支持多种编程语言的远程服务调用的框架。Thrift提供了一个C风格的IDL定义API。使用Thrift编译器可以生成客户端和服务器端代码框架。编译器可以生成多种语言的代码，包括C++、Java、Python、PHP、Ruby, Erlang和Node.js。</p>
+<p>Thrift接口包括一个或者多个服务。服务定义类似于一个JAVA接口，是一组方法。Thrift方法可以返回响应，也可以被定义为单向的。返回值的方法其实就是请求/响应类型交互模式的实现。客户端等待响应，并可能抛出异常。单向方法对应于通知类型的交互模式，服务端并不返回响应。</p>
+<p>Thrift支持多种消息格式：JSON、二进制和压缩二进制。二进制比JSON更高效，因为二进制解码更快。同样原因，压缩二进制格式可以提供更高级别的压缩效率。JSON，是易读的。Thrift也可以在裸TCP和HTTP中间选择，裸TCP看起来比HTTP更加有效。然而，HTTP对防火墙，浏览器和人来说更加友好。<br>消息格式</p>
+<p>了解完HTTP和Thrift后，我们来看下消息格式方面的问题。如果使用消息系统或者REST，就可以选择消息格式。其它的IPC机制，例如Thrift可能只支持部分消息格式，也许只有一种。无论哪种方式，我们必须使用一个跨语言的消息格式，这非常重要。因为指不定哪天你会使用其它语言。</p>
+<p>有两类消息格式：文本和二进制。文本格式的例子包括JSON和XML。这种格式的优点在于不仅可读，而且是自描述的。在JSON中，一个对象就是一组键值对。类似的，在XML中，属性是由名字和值构成。消费者可以从中选择感兴趣的元素而忽略其它部分。同时，小幅度的格式修改可以很容器向后兼容。</p>
+<p>XML文档结构是由XML schema定义的。随着时间发展，开发者社区意识到JSON也需要一个类似的机制。一个选择是使用JSON Schema，要么是独立的，要么是例如Swagger的IDL。</p>
+<p>基于文本的消息格式最大的缺点是消息会变得冗长，特别是XML。因为消息是自描述的，所以每个消息都包含属性和值。另外一个缺点是解析文本的负担过大。所以，你可能需要考虑使用二进制格式。</p>
+<p>二进制的格式也有很多。如果使用的是Thrift RPC，那可以使用二进制Thrift。如果选择消息格式，常用的还包括Protocol Buffers和Apache Avro。它们都提供典型的IDL来定义消息架构。一个不同点在于Protocol Buffers使用的是加标记（tag）的字段，而Avro消费者需要知道模式（schema）来解析消息。因此，使用前者，API更容易演进。这篇博客很好的比较了Thrift、Protocol Buffers、Avro三者的区别。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>微服务必须使用进程间通信机制来交互。当设计服务的通信模式时，你需要考虑几个问题：服务如何交互，每个服务如何标识API，如何升级API，以及如何处理部分失败。微服务架构有两类IPC机制可选，异步消息机制和同步请求/响应机制。在下一篇文章中，我们将会讨论微服务架构中的服务发现问题。</p>
+<p>原文链接：<a href="https://www.nginx.com/blog/building-microservices-inter-process-communication/" target="_blank" rel="noopener">Building Microservices: Inter-Process Communication in a Microservices Architecture</a>（翻译：杨峰 校对：李颖杰）</p>
+<p>本系列七篇文章列表如下：</p>
+<ul>
+<li>微服务实战（一）：微服务架构的优势与不足</li>
+<li>微服务实战（二）：使用API Gateway</li>
+<li>微服务实战（三）：深入微服务架构的进程间通信(本文)</li>
+<li>微服务实战（四）：服务发现的可行方案以及实践案例</li>
+<li>微服务实践（五）：微服务的事件驱动数据管理</li>
+<li>微服务实践（六）：选择微服务部署策略</li>
+<li>微服务实践（七）：从单体式架构迁移到微服务架构</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="hanfeng 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="hanfeng 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/微服务/" rel="tag"># 微服务</a>
+          
+            <a href="/tags/SpringCloud/" rel="tag"># SpringCloud</a>
+          
+            <a href="/tags/进程通信/" rel="tag"># 进程通信</a>
+          
+            <a href="/tags/微服务架构/" rel="tag"># 微服务架构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/05/Building-Microservices-Using-an-API-Gateway/" rel="next" title="微服务实战（二）：使用API Gateway">
+                <i class="fa fa-chevron-left"></i> 微服务实战（二）：使用API Gateway
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/" rel="prev" title="微服务实战（四）：服务发现的可行方案以及实践案例">
+                微服务实战（四）：服务发现的可行方案以及实践案例 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      
+        <div onclick="ShowGitment()" id="gitment-display-button">显示 Gitment 评论</div>
+        <div id="gitment-container" style="display:none"></div>
+      
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.png"
+              alt="hanfeng" />
+          
+            <p class="site-author-name" itemprop="name">hanfeng</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ihanfeng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#交互模式"><span class="nav-number">3.</span> <span class="nav-text">交互模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义API"><span class="nav-number">4.</span> <span class="nav-text">定义API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#API的演化"><span class="nav-number">5.</span> <span class="nav-text">API的演化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#处理部分失败"><span class="nav-number">6.</span> <span class="nav-text">处理部分失败</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IPC技术"><span class="nav-number">7.</span> <span class="nav-text">IPC技术</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#REST"><span class="nav-number">8.</span> <span class="nav-text">REST</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Thrift"><span class="nav-number">9.</span> <span class="nav-text">Thrift</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">10.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 &mdash; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hanfeng</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+   
+   
+   
+   
+   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+   
+       <script type="text/javascript">
+           function ShowGitment(){
+               document.getElementById("gitment-display-button").style.display = "none";
+               document.getElementById("gitment-container").style.display = "block";
+               var gitment = new Gitment({
+                   id: document.location.href,
+                   owner: 'ihanfeng',
+                   repo: 'ihanfeng.github.io',
+                   oauth: {
+                       client_id: '5883cfc50f5bbe6290a5',
+                       client_secret: 'a4a795fcd920a33fff22ae134b01942939a49341',
+                   }});
+               gitment.render('gitment-container');
+           }
+       </script>
+   
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("rePljebSx8LhP8p51uC6gOqM-gzGzoHsz", "SLFc1P3wJahuVtXBorp5e29f");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

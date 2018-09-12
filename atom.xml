@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>码农进阶之路</title>
+  
+  <subtitle>行走在琥玖的码农，专注JAVA领域相关技术</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.zhujunwang.cn/"/>
+  <updated>2018-09-12T07:22:48.070Z</updated>
+  <id>http://blog.zhujunwang.cn/</id>
+  
+  <author>
+    <name>hanfeng</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CentOS7安装MariaDB</title>
+    <link href="http://blog.zhujunwang.cn/2017/11/11/CentOS7-installs-MariaDB/"/>
+    <id>http://blog.zhujunwang.cn/2017/11/11/CentOS7-installs-MariaDB/</id>
+    <published>2017-11-11T03:37:20.000Z</published>
+    <updated>2018-09-12T07:22:48.070Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h1&gt;&lt;p&gt;CentOS 6 或早期的版本中提供的是 MySQL 的服务器/客户端安装包，但 CentOS 7 已使用了 MariaDB 替代了默认的 MySQL。MariaDB数据库管理系统是MySQL的一个分支，主要由开源社区在维护，采用GPL授权许可 MariaDB的目的是完全兼容MySQL，包括API和命令行，使之能轻松成为MySQL的代替品。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="数据库" scheme="http://blog.zhujunwang.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="MariaDB" scheme="http://blog.zhujunwang.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MariaDB/"/>
+    
+    
+      <category term="数据库" scheme="http://blog.zhujunwang.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="MariaDB" scheme="http://blog.zhujunwang.cn/tags/MariaDB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hadoop环境搭建</title>
+    <link href="http://blog.zhujunwang.cn/2017/11/07/Apache-Hadoop-environment-to-build/"/>
+    <id>http://blog.zhujunwang.cn/2017/11/07/Apache-Hadoop-environment-to-build/</id>
+    <published>2017-11-07T13:49:23.000Z</published>
+    <updated>2018-09-12T07:22:48.002Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h1&gt;&lt;p&gt; “工欲善其事，必先利其器”，在学习Hadoop之前，我们需要有个好的开发环境。&lt;/p&gt;
+&lt;h1 id=&quot;版本选择&quot;&gt;&lt;a href=&quot;#版本选择&quot; class=&quot;headerlink&quot; title=&quot;版本选择&quot;&gt;&lt;/a&gt;版本选择&lt;/h1&gt;&lt;h2 id=&quot;Apache-Hadoop&quot;&gt;&lt;a href=&quot;#Apache-Hadoop&quot; class=&quot;headerlink&quot; title=&quot;Apache Hadoop&quot;&gt;&lt;/a&gt;Apache Hadoop&lt;/h2&gt;&lt;p&gt;Hadoop是Apache顶级项目，我们可以直接从Apache官网下载。&lt;/p&gt;
+&lt;p&gt;官网：&lt;a href=&quot;http://hadoop.apache.org/releases.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://hadoop.apache.org/releases.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;目前稳定版本为 &lt;a href=&quot;http://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.8.2/hadoop-2.8.2.tar.gz&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;2.8.2&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;CDH&quot;&gt;&lt;a href=&quot;#CDH&quot; class=&quot;headerlink&quot; title=&quot;CDH&quot;&gt;&lt;/a&gt;CDH&lt;/h2&gt;&lt;p&gt;Cloidera提供Hadoop支持、咨询和管理工具的公司，在Hadoop生态圈地位举足轻重。其著名产品Cloudera’s Distribution for Hadoop，即CDH。&lt;/p&gt;
+&lt;p&gt;CDH包括Hadoop、HBase、Hive、Pig、Sqoop、Flume、Xookeeper、Oozie、Mahout等，几乎覆盖整个Hadoop生态圈，保证组件之间的兼容性。&lt;/p&gt;
+&lt;p&gt;CDH最新版本CDH5，基于Hadoop 2.3.&lt;br&gt;CDH经典版本CDH3，基于Hadoop0.20.2，生产稳定版本。&lt;/p&gt;
+&lt;p&gt;笔者在学习中决定采用最新的CDH5进行研究。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;a href=&quot;https://www.cloudera.com/downloads/cdh/5-13-0.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;官网&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://archive.cloudera.com/cdh5/cdh/5/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;CDH5&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="大数据" scheme="http://blog.zhujunwang.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+      <category term="Hadoop" scheme="http://blog.zhujunwang.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/Hadoop/"/>
+    
+    
+      <category term="大数据" scheme="http://blog.zhujunwang.cn/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+      <category term="Hadoop" scheme="http://blog.zhujunwang.cn/tags/Hadoop/"/>
+    
+      <category term="CDH5" scheme="http://blog.zhujunwang.cn/tags/CDH5/"/>
+    
+      <category term="HDFS" scheme="http://blog.zhujunwang.cn/tags/HDFS/"/>
+    
+      <category term="Yarn" scheme="http://blog.zhujunwang.cn/tags/Yarn/"/>
+    
+      <category term="Flume" scheme="http://blog.zhujunwang.cn/tags/Flume/"/>
+    
+      <category term="MapReduce" scheme="http://blog.zhujunwang.cn/tags/MapReduce/"/>
+    
+      <category term="Hive" scheme="http://blog.zhujunwang.cn/tags/Hive/"/>
+    
+      <category term="Pig" scheme="http://blog.zhujunwang.cn/tags/Pig/"/>
+    
+      <category term="Mahout" scheme="http://blog.zhujunwang.cn/tags/Mahout/"/>
+    
+      <category term="HBase" scheme="http://blog.zhujunwang.cn/tags/HBase/"/>
+    
+      <category term="Zookeeper" scheme="http://blog.zhujunwang.cn/tags/Zookeeper/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hadoop生态系统</title>
+    <link href="http://blog.zhujunwang.cn/2017/11/07/Hadoop-past-and-present/"/>
+    <id>http://blog.zhujunwang.cn/2017/11/07/Hadoop-past-and-present/</id>
+    <published>2017-11-07T11:45:00.000Z</published>
+    <updated>2018-09-12T07:22:48.128Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;认识Hadoop&quot;&gt;&lt;a href=&quot;#认识Hadoop&quot; class=&quot;headerlink&quot; title=&quot;认识Hadoop&quot;&gt;&lt;/a&gt;认识Hadoop&lt;/h1&gt;&lt;p&gt;&lt;code&gt;Hadoop&lt;/code&gt;是Apache开源组织的一个分布式计算开源框架&lt;a href=&quot;http://hadoop.apache.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://hadoop.apache.org/&lt;/a&gt;,可编写和运行分布式应用处理大规模数据。 Hadoop框架的核心是HDFS和MapReduce。其中 HDFS 是分布式文件系统，MapReduce 是分布式数据处理模型和执行环境。&lt;/p&gt;
+&lt;p&gt;特点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;运行方便：Hadoop是运行在由一般商用机器构成的大型集群上。Hadoop在云计算服务层次中属于PaaS(Platform-as-a- Service)：平台即服务。&lt;/li&gt;
+&lt;li&gt;健壮性：Hadoop致力于在一般的商用硬件上运行，能够从容的处理类似硬件失效这类的故障。&lt;/li&gt;
+&lt;li&gt;可扩展性：Hadoop通过增加集群节点，可以线性地扩展以处理更大的数据集。&lt;/li&gt;
+&lt;li&gt;简单：Hadoop允许用户快速编写高效的并行代码。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="大数据" scheme="http://blog.zhujunwang.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+      <category term="Hadoop" scheme="http://blog.zhujunwang.cn/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/Hadoop/"/>
+    
+    
+      <category term="大数据" scheme="http://blog.zhujunwang.cn/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+      <category term="Hadoop" scheme="http://blog.zhujunwang.cn/tags/Hadoop/"/>
+    
+      <category term="HDFS" scheme="http://blog.zhujunwang.cn/tags/HDFS/"/>
+    
+      <category term="Yarn" scheme="http://blog.zhujunwang.cn/tags/Yarn/"/>
+    
+      <category term="Flume" scheme="http://blog.zhujunwang.cn/tags/Flume/"/>
+    
+      <category term="MapReduce" scheme="http://blog.zhujunwang.cn/tags/MapReduce/"/>
+    
+      <category term="Hive" scheme="http://blog.zhujunwang.cn/tags/Hive/"/>
+    
+      <category term="Pig" scheme="http://blog.zhujunwang.cn/tags/Pig/"/>
+    
+      <category term="Mahout" scheme="http://blog.zhujunwang.cn/tags/Mahout/"/>
+    
+      <category term="HBase" scheme="http://blog.zhujunwang.cn/tags/HBase/"/>
+    
+      <category term="Zookeeper" scheme="http://blog.zhujunwang.cn/tags/Zookeeper/"/>
+    
+      <category term="生态系统" scheme="http://blog.zhujunwang.cn/tags/%E7%94%9F%E6%80%81%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微服务实践（七）：从单体式架构迁移到微服务架构</title>
+    <link href="http://blog.zhujunwang.cn/2017/11/05/Refactoring-a-Monolith-into-Microservices/"/>
+    <id>http://blog.zhujunwang.cn/2017/11/05/Refactoring-a-Monolith-into-Microservices/</id>
+    <published>2017-11-05T12:56:30.000Z</published>
+    <updated>2018-09-12T07:22:48.209Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h1&gt;&lt;p&gt;这是用微服务开发应用系列博客的第七篇也是最后一篇。第一篇中介绍了微服务架构模式，并且讨论了微服架构的优缺点；接续文章讨论了微服务架构不同方面：使用API网关，进程间通信，服务发现，事件驱动数据管理以及部署微服务。本篇，我们将探讨将应用从单体式架构迁移到微服务架构需要考虑的策略。&lt;/p&gt;
+&lt;h1 id=&quot;迁移到微服务综述&quot;&gt;&lt;a href=&quot;#迁移到微服务综述&quot; class=&quot;headerlink&quot; title=&quot;迁移到微服务综述&quot;&gt;&lt;/a&gt;迁移到微服务综述&lt;/h1&gt;&lt;p&gt;迁移单体式应用到微服务架构意味着一系列现代化过程，有点像这几代开发者一直在做的事情，实时上，当迁移时，我们可以重用一些想法。&lt;/p&gt;
+&lt;p&gt;一个策略是：不要大规模（big bang）重写代码（只有当你承担重建一套全新基于微服务的应用时候可以采用重写这种方法）。重写代码听起来很不错，但实际上充满了风险最终可能会失败，就如Martin Fowler所说：“the only thing a Big Bang rewrite guarantees is a Big Bang!”&lt;/p&gt;
+&lt;p&gt;相反，应该采取逐步迁移单体式应用的策略，通过逐步生成微服务新应用，与旧的单体式应用集成，随着时间推移，单体式应用在整个架构中比例逐渐下降直到消失或者成为微服务架构一部分。这个策略有点像在高速路上限速到70迈对车做维护，尽管有挑战，但是比起重写的风险小很多。&lt;/p&gt;
+&lt;p&gt;Martin Fowler将这种现代化策略成为绞杀（Strangler）应用，名字来源于雨林中的绞杀藤（strangler vine），也叫绞杀榕(strangler fig)。绞杀藤为了爬到森林顶端都要缠绕着大叔生长，一段时间后，树死了，留下树形藤。这种应用也使用同一种模式，围绕着传统应用开发了新型微服务应用，传统应用会渐渐退出舞台。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="微服务" scheme="http://blog.zhujunwang.cn/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+    
+      <category term="微服务" scheme="http://blog.zhujunwang.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+      <category term="SpringCloud" scheme="http://blog.zhujunwang.cn/tags/SpringCloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微服务实践（六）：选择微服务部署策略</title>
+    <link href="http://blog.zhujunwang.cn/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/"/>
+    <id>http://blog.zhujunwang.cn/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/</id>
+    <published>2017-11-05T12:56:17.000Z</published>
+    <updated>2018-09-12T07:22:48.072Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这篇博客是用微服务建应用的第六篇，第一篇介绍了微服务架构模板，并且讨论了使用微服务的优缺点。随后的文章讨论了微服务不同方面：使用API网关，进程间通讯，服务发现和事件驱动数据管理。这篇文章，我们将讨论部署微服务的策略。&lt;/p&gt;
+&lt;h1 id=&quot;动机&quot;&gt;&lt;a href=&quot;#动机&quot; class=&quot;headerlink&quot; title=&quot;动机&quot;&gt;&lt;/a&gt;动机&lt;/h1&gt;&lt;p&gt;部署一个单体式应用意味运行大型应用的多个副本，典型的提供若干个（N）服务器（物理或者虚拟），运行若干个（M）个应用实例。部署单体式应用不会很直接，但是肯定比部署微服务应用简单些。&lt;/p&gt;
+&lt;p&gt;一个微服务应用由上百个服务构成，服务可以采用不同语言和框架分别写就。每个服务都是一个单一应用，可以有自己的部署、资源、扩展和监控需求。例如，可以根据服务需求运行若干个服务实例，除此之外，每个实例必须有自己的CPU，内存和I/O资源。尽管很复杂，但是更挑战的是服务部署必须快速、可靠和性价比高。&lt;/p&gt;
+&lt;p&gt;有一些微服务部署的模式，先讨论一下每个主机多服务实例的模式。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="微服务" scheme="http://blog.zhujunwang.cn/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+    
+      <category term="微服务" scheme="http://blog.zhujunwang.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+      <category term="SpringCloud" scheme="http://blog.zhujunwang.cn/tags/SpringCloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微服务实践（五）：微服务的事件驱动数据管理</title>
+    <link href="http://blog.zhujunwang.cn/2017/11/05/Event-Driven-Data-Management-for-Microservices/"/>
+    <id>http://blog.zhujunwang.cn/2017/11/05/Event-Driven-Data-Management-for-Microservices/</id>
+    <published>2017-11-05T12:56:06.000Z</published>
+    <updated>2018-09-12T07:22:48.092Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文是使用微服务创建应用系列的第五篇文章。第一篇文章介绍了微服务架构模式，并且讨论了使用微服务的优缺点；第二和第三篇描述了微服务架构模块间通讯的不同方面；第四篇研究了服务发现中的问题。本篇中，我们从另外一个角度研究一下微服务架构带来的分布式数据管理问题。&lt;/p&gt;
+&lt;h1 id=&quot;1-1-微服务和分布式数据管理问题&quot;&gt;&lt;a href=&quot;#1-1-微服务和分布式数据管理问题&quot; class=&quot;headerlink&quot; title=&quot;1.1 微服务和分布式数据管理问题&quot;&gt;&lt;/a&gt;1.1 微服务和分布式数据管理问题&lt;/h1&gt;&lt;p&gt;单体式应用一般都会有一个关系型数据库，由此带来的好处是应用可以使用 ACID transactions，可以带来一些重要的操作特性：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;原子性 – 任何改变都是原子性的&lt;/li&gt;
+&lt;li&gt;一致性 – 数据库状态一直是一致性的&lt;/li&gt;
+&lt;li&gt;隔离性 – 即使交易并发执行，看起来也是串行的&lt;/li&gt;
+&lt;li&gt;Durable – 一旦交易提交了就不可回滚&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;鉴于以上特性，应用可以简化为：开始一个交易，改变（插入，删除，更新）很多行，然后提交这些交易。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="微服务" scheme="http://blog.zhujunwang.cn/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+    
+      <category term="微服务" scheme="http://blog.zhujunwang.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+      <category term="SpringCloud" scheme="http://blog.zhujunwang.cn/tags/SpringCloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微服务实战（四）：服务发现的可行方案以及实践案例</title>
+    <link href="http://blog.zhujunwang.cn/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/"/>
+    <id>http://blog.zhujunwang.cn/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/</id>
+    <published>2017-11-05T12:55:55.000Z</published>
+    <updated>2018-09-12T07:22:48.231Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是关于使用微服务架构创建应用系列的第四篇文章。第一篇介绍了微服务架构的模式，讨论了使用微服务架构的优缺点。第二和第三篇描述了微服务架构内部的通讯机制。这篇文章中，我们将会探讨服务发现相关问题。&lt;/p&gt;
+&lt;h1 id=&quot;为什么要使用服务发现&quot;&gt;&lt;a href=&quot;#为什么要使用服务发现&quot; class=&quot;headerlink&quot; title=&quot;为什么要使用服务发现?&quot;&gt;&lt;/a&gt;为什么要使用服务发现?&lt;/h1&gt;&lt;p&gt;设想一下，我们正在写代码使用了提供REST API或者Thrift API的服务，为了完成一次服务请求，代码需要知道服务实例的网络位置（IP地址和端口）。传统应用都运行在物理硬件上，服务实例的网络位置都是相对固定的。例如，代码可以从一个经常变更的配置文件中读取网络位置。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="微服务" scheme="http://blog.zhujunwang.cn/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+    
+      <category term="微服务" scheme="http://blog.zhujunwang.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+      <category term="SpringCloud" scheme="http://blog.zhujunwang.cn/tags/SpringCloud/"/>
+    
+      <category term="进程通信" scheme="http://blog.zhujunwang.cn/tags/%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/"/>
+    
+      <category term="微服务架构" scheme="http://blog.zhujunwang.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微服务实战（三）：深入微服务架构的进程间通信</title>
+    <link href="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/"/>
+    <id>http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/</id>
+    <published>2017-11-05T12:55:41.000Z</published>
+    <updated>2018-09-12T07:22:48.043Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h1&gt;&lt;p&gt;这是采用微服务架构创建自己应用系列第三篇文章。第一篇介绍了微服务架构模式，和单体式模式进行了比较，并且讨论了使用微服务架构的优缺点。第二篇描述了采用微服务架构应用客户端之间如何采用API Gateway方式进行通信。在这篇文章中，我们将讨论系统服务之间如何通信。&lt;/p&gt;
+&lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;在单体式应用中，各个模块之间的调用是通过编程语言级别的方法或者函数来实现的。但是一个基于微服务的分布式应用是运行在多台机器上的。一般来说，每个服务实例都是一个进程。因此，如下图所示，服务之间的交互必须通过进程间通信（IPC）来实现。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="微服务" scheme="http://blog.zhujunwang.cn/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+    
+      <category term="微服务" scheme="http://blog.zhujunwang.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+      <category term="SpringCloud" scheme="http://blog.zhujunwang.cn/tags/SpringCloud/"/>
+    
+      <category term="进程通信" scheme="http://blog.zhujunwang.cn/tags/%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1/"/>
+    
+      <category term="微服务架构" scheme="http://blog.zhujunwang.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微服务实战（二）：使用API Gateway</title>
+    <link href="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Using-an-API-Gateway/"/>
+    <id>http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Using-an-API-Gateway/</id>
+    <published>2017-11-05T12:55:24.000Z</published>
+    <updated>2018-09-12T07:22:48.060Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h1&gt;&lt;p&gt;本系列的第一篇介绍了微服务架构模式。它讨论了采用微服务的优点和缺点，除了一些复杂的微服务，这种模式还是复杂应用的理想选择。&lt;/p&gt;
+&lt;p&gt;当你决定将应用作为一组微服务时，需要决定应用客户端如何与微服务交互。在单体式程序中，通常只有一组冗余的或者负载均衡的服务提供点。在微服务架构中，每一个微服务暴露一组细粒度的服务提供点。在本篇文章中，我们来看它如何影响客户端到服务端通信，同时提出一种API Gateway的方法。&lt;/p&gt;
+&lt;p&gt;原文地址: &lt;a href=&quot;https://www.nginx.com/blog/building-microservices-using-an-api-gateway/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Building Microservices: Using an API Gateway&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="微服务" scheme="http://blog.zhujunwang.cn/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+    
+      <category term="微服务" scheme="http://blog.zhujunwang.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+      <category term="SpringCloud" scheme="http://blog.zhujunwang.cn/tags/SpringCloud/"/>
+    
+      <category term="API 网关" scheme="http://blog.zhujunwang.cn/tags/API-%E7%BD%91%E5%85%B3/"/>
+    
+      <category term="API gateway" scheme="http://blog.zhujunwang.cn/tags/API-gateway/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微服务实战（一）：微服务架构的优势与不足</title>
+    <link href="http://blog.zhujunwang.cn/2017/11/05/introduction-to-microservices/"/>
+    <id>http://blog.zhujunwang.cn/2017/11/05/introduction-to-microservices/</id>
+    <published>2017-11-05T12:38:42.000Z</published>
+    <updated>2018-09-12T07:22:48.252Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;希望读者通过本系列文章对微服务优缺点有一个比较好的理解，以及何时使用这种架构。也许微服务架构比较适合你的应用。也许你正在开发一个大型、复杂单体式应用，日常开发和部署经验非常缓慢和痛苦，而微服务看起来是远方一个极乐世界。幸运的是，有可以参考的脱离苦海的策略，本篇文章中，我将描述如何逐步将单体式应用迁移到微服务架构。&lt;/p&gt;
+&lt;p&gt;本系列七篇文章列表如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;微服务实战（一）：微服务架构的优势与不足&lt;/li&gt;
+&lt;li&gt;微服务实战（二）：使用API Gateway&lt;/li&gt;
+&lt;li&gt;微服务实战（三）：深入微服务架构的进程间通信&lt;/li&gt;
+&lt;li&gt;微服务实战（四）：服务发现的可行方案以及实践案例&lt;/li&gt;
+&lt;li&gt;微服务实践（五）：微服务的事件驱动数据管理&lt;/li&gt;
+&lt;li&gt;微服务实践（六）：选择微服务部署策略&lt;/li&gt;
+&lt;li&gt;微服务实践（七）：从单体式架构迁移到微服务架构&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h1&gt;&lt;p&gt;本文来自Nginx官方博客&lt;a href=&quot;https://www.nginx.com/blog/introduction-to-microservices/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Introduction to Microservices&lt;/a&gt;，是微服务系列文章的第一篇，主要探讨了传统的单体式应用的不足，以及微服务架构的优势与挑战。正如作者所说，微服务架构更适合用于构建复杂的应用，尽管它也有自己的不足。&lt;/p&gt;
+&lt;p&gt;这篇文章作者是Chris Richardson，他是早期基于Java的Amazonite EC2 PaaS平台CloudFoundry.com的创始人。现在他为企业提供如何开发和部署应用的咨询服务。他也经常在&lt;a href=&quot;http://microservices.io&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://microservices.io&lt;/a&gt;上发表有关微服务的文章。&lt;/p&gt;
+&lt;p&gt;微服务正在博客、社交媒体讨论组和会议演讲中获得越来越多的关注，在Gartner的2014 Hype Cycle上它的排名非常靠前。同时，软件社区中也有不少持怀疑论者，认为微服务不是什么新东西。Naysayers认为这就是SOA架构的重新包装。然而，尽管存在着不同的争论，微服务架构模式却正在为敏捷部署以及复杂企业应用实施提供巨大的帮助。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="微服务" scheme="http://blog.zhujunwang.cn/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+    
+      <category term="微服务" scheme="http://blog.zhujunwang.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+      <category term="SpringCloud" scheme="http://blog.zhujunwang.cn/tags/SpringCloud/"/>
+    
+      <category term="单体应用" scheme="http://blog.zhujunwang.cn/tags/%E5%8D%95%E4%BD%93%E5%BA%94%E7%94%A8/"/>
+    
+      <category term="docker" scheme="http://blog.zhujunwang.cn/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Java并发】JDK并发包之同步控制(6)</title>
+    <link href="http://blog.zhujunwang.cn/2017/11/01/JDK-concurrent-synchronization-control-6/"/>
+    <id>http://blog.zhujunwang.cn/2017/11/01/JDK-concurrent-synchronization-control-6/</id>
+    <published>2017-11-01T02:07:33.000Z</published>
+    <updated>2018-09-12T07:22:48.176Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h1&gt;&lt;p&gt;为了更好地支持并发程序，JDK内部提供了大量实用的API和框架。同步控制是并发编程必不可少的重要手段。&lt;/p&gt;
+&lt;h1 id=&quot;重入锁-RetreenLock&quot;&gt;&lt;a href=&quot;#重入锁-RetreenLock&quot; class=&quot;headerlink&quot; title=&quot;重入锁(RetreenLock)&quot;&gt;&lt;/a&gt;重入锁(RetreenLock)&lt;/h1&gt;&lt;p&gt;重入锁完全可以替代&lt;code&gt;synchronized&lt;/code&gt;关键字，在JDK5.0，重入锁的性能要好于synchronized，在JDK6.0后synchronized做了大量的优化，两者性能差不多。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="JAVA" scheme="http://blog.zhujunwang.cn/categories/JAVA/"/>
+    
+      <category term="JAVA并发" scheme="http://blog.zhujunwang.cn/categories/JAVA/JAVA%E5%B9%B6%E5%8F%91/"/>
+    
+    
+      <category term="JAVA" scheme="http://blog.zhujunwang.cn/tags/JAVA/"/>
+    
+      <category term="JAVA并发" scheme="http://blog.zhujunwang.cn/tags/JAVA%E5%B9%B6%E5%8F%91/"/>
+    
+      <category term="多线程" scheme="http://blog.zhujunwang.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+      <category term="并发包" scheme="http://blog.zhujunwang.cn/tags/%E5%B9%B6%E5%8F%91%E5%8C%85/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Java并发】之高并发下ArrayList和HashMap运用(5)</title>
+    <link href="http://blog.zhujunwang.cn/2017/10/31/Java-Concurrent-ArrayList-And-HashMap-5/"/>
+    <id>http://blog.zhujunwang.cn/2017/10/31/Java-Concurrent-ArrayList-And-HashMap-5/</id>
+    <published>2017-10-31T14:59:03.000Z</published>
+    <updated>2018-09-12T07:22:48.178Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h1&gt;&lt;p&gt;在平常的java代码开发过程中，我们会经常性的就会用到ArrayList和HashMap来辅助自己完成需求工作，而且配合的也是相当的默契。但是如果环境发生改变，在并发情况下，他是否还能够顺利的完成我们想要的要求呢？&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="JAVA" scheme="http://blog.zhujunwang.cn/categories/JAVA/"/>
+    
+      <category term="JAVA并发" scheme="http://blog.zhujunwang.cn/categories/JAVA/JAVA%E5%B9%B6%E5%8F%91/"/>
+    
+    
+      <category term="JAVA" scheme="http://blog.zhujunwang.cn/tags/JAVA/"/>
+    
+      <category term="JAVA并发" scheme="http://blog.zhujunwang.cn/tags/JAVA%E5%B9%B6%E5%8F%91/"/>
+    
+      <category term="多线程" scheme="http://blog.zhujunwang.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Java并发】之线程控制(4)</title>
+    <link href="http://blog.zhujunwang.cn/2017/10/31/Java-multithreading-based-on-concurrent-4/"/>
+    <id>http://blog.zhujunwang.cn/2017/10/31/Java-multithreading-based-on-concurrent-4/</id>
+    <published>2017-10-31T13:53:48.000Z</published>
+    <updated>2018-09-12T07:22:48.206Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;摘要&quot;&gt;&lt;a href=&quot;#摘要&quot; class=&quot;headerlink&quot; title=&quot;摘要&quot;&gt;&lt;/a&gt;摘要&lt;/h1&gt;&lt;p&gt;Java的线程支持提供了一些便捷的工具方法，通过这些便捷的工具方法可以很好地控制线程的执行&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;join线程控制，让一个线程等待另一个线程完成的方法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;后台线程，又称为守护线程或精灵线程。它的任务是为其他的线程提供服务，如果所有的前台线程都死亡，后台线程会自动死亡&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;线程睡眠sleep，让当前正在执行的线程暂停一段时，并进入阻塞状态&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;线程让步yield，让当前正在执行的线程暂停，但它不会阻塞该线程，它只是将该线程转入就绪状态&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="JAVA" scheme="http://blog.zhujunwang.cn/categories/JAVA/"/>
+    
+      <category term="JAVA并发" scheme="http://blog.zhujunwang.cn/categories/JAVA/JAVA%E5%B9%B6%E5%8F%91/"/>
+    
+    
+      <category term="JAVA" scheme="http://blog.zhujunwang.cn/tags/JAVA/"/>
+    
+      <category term="JAVA并发" scheme="http://blog.zhujunwang.cn/tags/JAVA%E5%B9%B6%E5%8F%91/"/>
+    
+      <category term="多线程" scheme="http://blog.zhujunwang.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Java并发】之多线程wait()和notify()(3)</title>
+    <link href="http://blog.zhujunwang.cn/2017/10/31/Java-multithreading-based-on-concurrent-3/"/>
+    <id>http://blog.zhujunwang.cn/2017/10/31/Java-multithreading-based-on-concurrent-3/</id>
+    <published>2017-10-31T12:53:23.000Z</published>
+    <updated>2018-09-12T07:22:48.204Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;概要&quot;&gt;&lt;a href=&quot;#概要&quot; class=&quot;headerlink&quot; title=&quot;概要&quot;&gt;&lt;/a&gt;概要&lt;/h1&gt;&lt;p&gt;在多线程的情况下，由于同一进程的多个线程共享同一片存储空间，在带来方便的同时，也带来了访问冲突这个严重的问题。Java语言提供了专门机制以解决这种冲突，有效避免了同一个数据对象被多个线程同时访问。&lt;/p&gt;
+&lt;p&gt;为了支持多线程之间的协作，JDK提供了2个非常重要的接口线程等待wait()方法和通知notify()方法。结合与synchronized关键字使用，可以建立很多优秀的同步模型。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="JAVA" scheme="http://blog.zhujunwang.cn/categories/JAVA/"/>
+    
+      <category term="JAVA并发" scheme="http://blog.zhujunwang.cn/categories/JAVA/JAVA%E5%B9%B6%E5%8F%91/"/>
+    
+    
+      <category term="JAVA" scheme="http://blog.zhujunwang.cn/tags/JAVA/"/>
+    
+      <category term="JAVA并发" scheme="http://blog.zhujunwang.cn/tags/JAVA%E5%B9%B6%E5%8F%91/"/>
+    
+      <category term="多线程" scheme="http://blog.zhujunwang.cn/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Java并发】之多线程基础(2)</title>
+    <link href="http://blog.zhujunwang.cn/2017/10/30/Java-multithreading-based-on-concurrent-2/"/>
+    <id>http://blog.zhujunwang.cn/2017/10/30/Java-multithreading-based-on-concurrent-2/</id>
+    <published>2017-10-30T15:19:53.000Z</published>
+    <updated>2018-09-12T07:22:48.188Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;进程和线程&quot;&gt;&lt;a href=&quot;#进程和线程&quot; class=&quot;headerlink&quot; title=&quot;进程和线程&quot;&gt;&lt;/a&gt;进程和线程&lt;/h1&gt;&lt;p&gt;进程是指处于运行过程中的程序，并且具有一定的独立性。进程是系统进行资源分配和调度的一个单位。当程序进入内存运行时，即为进程。&lt;/p&gt;
+&lt;h2 id=&quot;进程特点&quot;&gt;&lt;a href=&quot;#进程特点&quot; class=&quot;headerlink&quot; title=&quot;进程特点&quot;&gt;&lt;/a&gt;进程特点&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;独立性&lt;/p&gt;
+&lt;p&gt;进程是系统中独立存在的实体，它可以独立拥有资源，每一个进程都有自己独立的地址空间，没有进程本身的运行，用户进程不可以直接访问其他进程的地址空间。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;动态性&lt;/p&gt;
+&lt;p&gt;进程和程序的区别在于进程是动态的，进程中有时间的概念，进程具有自己的生命周期和各种不同的状态。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;并发性&lt;/p&gt;
+&lt;p&gt;多个进程可以在单个处理器上并发执行，互不影响。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="JAVA" scheme="http://blog.zhujunwang.cn/categories/JAVA/"/>
+    
+      <category term="JAVA并发" scheme="http://blog.zhujunwang.cn/categories/JAVA/JAVA%E5%B9%B6%E5%8F%91/"/>
+    
+    
+      <category term="JAVA" scheme="http://blog.zhujunwang.cn/tags/JAVA/"/>
+    
+      <category term="JAVA并发" scheme="http://blog.zhujunwang.cn/tags/JAVA%E5%B9%B6%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Java并发】之多线程基础(1)</title>
+    <link href="http://blog.zhujunwang.cn/2017/10/30/Java-multithreading-based-on-concurrent-1/"/>
+    <id>http://blog.zhujunwang.cn/2017/10/30/Java-multithreading-based-on-concurrent-1/</id>
+    <published>2017-10-30T14:08:44.000Z</published>
+    <updated>2018-09-12T07:22:48.186Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;在传统的线程技术中，创建多线程有2中方式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;继承Thread类，并重写run()方法；&lt;/li&gt;
+&lt;li&gt;实现Runnable接口，覆盖接口的run()方法；&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="JAVA" scheme="http://blog.zhujunwang.cn/categories/JAVA/"/>
+    
+      <category term="JAVA并发" scheme="http://blog.zhujunwang.cn/categories/JAVA/JAVA%E5%B9%B6%E5%8F%91/"/>
+    
+    
+      <category term="JAVA" scheme="http://blog.zhujunwang.cn/tags/JAVA/"/>
+    
+      <category term="JAVA并发" scheme="http://blog.zhujunwang.cn/tags/JAVA%E5%B9%B6%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JAVA虚拟机结构</title>
+    <link href="http://blog.zhujunwang.cn/2017/10/11/The-Structure-of-the-Java-Virtual-Machine/"/>
+    <id>http://blog.zhujunwang.cn/2017/10/11/The-Structure-of-the-Java-Virtual-Machine/</id>
+    <published>2017-10-11T13:30:00.000Z</published>
+    <updated>2018-09-12T07:22:48.250Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;class文件格式&quot;&gt;&lt;a href=&quot;#class文件格式&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="JAVA" scheme="http://blog.zhujunwang.cn/categories/JAVA/"/>
+    
+    
+      <category term="JAVA" scheme="http://blog.zhujunwang.cn/tags/JAVA/"/>
+    
+      <category term="虚拟机" scheme="http://blog.zhujunwang.cn/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+      <category term="JVM" scheme="http://blog.zhujunwang.cn/tags/JVM/"/>
+    
+      <category term="JAVA8" scheme="http://blog.zhujunwang.cn/tags/JAVA8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JAVA虚拟机规范 (JAVA SE 8 Edition)</title>
+    <link href="http://blog.zhujunwang.cn/2017/10/11/The-Java-Virtual-Machine-Specification-JAVA-SE-8-Edition/"/>
+    <id>http://blog.zhujunwang.cn/2017/10/11/The-Java-Virtual-Machine-Specification-JAVA-SE-8-Edition/</id>
+    <published>2017-10-11T12:00:00.000Z</published>
+    <updated>2018-09-12T07:22:48.248Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;JAVA9已经发布了，阿里达摩院也横空出世了，在不学习，就跟不上年轻的步伐，就跟不上时代的潮流。作为一个6年的JAVA开发者，是时候深入研究学习。本系列博客，仅作为学习笔记。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="JAVA" scheme="http://blog.zhujunwang.cn/categories/JAVA/"/>
+    
+    
+      <category term="JAVA" scheme="http://blog.zhujunwang.cn/tags/JAVA/"/>
+    
+      <category term="虚拟机" scheme="http://blog.zhujunwang.cn/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+      <category term="JVM" scheme="http://blog.zhujunwang.cn/tags/JVM/"/>
+    
+      <category term="JAVA8" scheme="http://blog.zhujunwang.cn/tags/JAVA8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何在window10下安装Gradle</title>
+    <link href="http://blog.zhujunwang.cn/2017/09/29/How-to-install-gradle-on-windows-10/"/>
+    <id>http://blog.zhujunwang.cn/2017/09/29/How-to-install-gradle-on-windows-10/</id>
+    <published>2017-09-29T14:00:00.000Z</published>
+    <updated>2018-09-12T07:22:48.174Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Gradle介绍&quot;&gt;&lt;a href=&quot;#Gradle介绍&quot; class=&quot;headerlink&quot; title=&quot;Gradle介绍&quot;&gt;&lt;/a&gt;Gradle介绍&lt;/h1&gt;&lt;p&gt;Gradle是一个基于JVM的构建工具，它提供了：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;像Ant一样，通用灵活的构建工具&lt;/li&gt;
+&lt;li&gt;可以切换的，基于约定的构建框架&lt;/li&gt;
+&lt;li&gt;强大的多工程构建支持&lt;/li&gt;
+&lt;li&gt;基于Apache Ivy的强大的依赖管理&lt;/li&gt;
+&lt;li&gt;支持maven, Ivy仓库&lt;/li&gt;
+&lt;li&gt;支持传递性依赖管理，而不需要远程仓库或者是pom.xml和ivy.xml配置文件。&lt;/li&gt;
+&lt;li&gt;对Ant的任务做了很好的集成&lt;/li&gt;
+&lt;li&gt;基于Groovy，build脚本使用Groovy编写&lt;/li&gt;
+&lt;li&gt;有广泛的领域模型支持构建&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Gradle" scheme="http://blog.zhujunwang.cn/categories/Gradle/"/>
+    
+    
+      <category term="Gradle" scheme="http://blog.zhujunwang.cn/tags/Gradle/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用 GitHub Pages and Hexo 搭建免费个人博客</title>
+    <link href="http://blog.zhujunwang.cn/2017/09/24/How-to-build-a-personal-blog-using-GitHub-Pages-and-Hexo/"/>
+    <id>http://blog.zhujunwang.cn/2017/09/24/How-to-build-a-personal-blog-using-GitHub-Pages-and-Hexo/</id>
+    <published>2017-09-24T06:30:26.000Z</published>
+    <updated>2018-09-12T07:22:48.164Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Hexo介绍&quot;&gt;&lt;a href=&quot;#Hexo介绍&quot; class=&quot;headerlink&quot; title=&quot;Hexo介绍&quot;&gt;&lt;/a&gt;Hexo介绍&lt;/h1&gt;&lt;p&gt;  Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。&lt;/p&gt;
+&lt;p&gt;  官网：&lt;a href=&quot;https://hexo.io/zh-cn/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://blog.zhujunwang.cn/categories/Hexo/"/>
+    
+    
+      <category term="github" scheme="http://blog.zhujunwang.cn/tags/github/"/>
+    
+      <category term="hexo" scheme="http://blog.zhujunwang.cn/tags/hexo/"/>
+    
+  </entry>
+  
+</feed>
