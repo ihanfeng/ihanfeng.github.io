@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>码农进阶之路</title>
   
-  <subtitle>行走在琥玖的码农，专注JAVA领域相关技术</subtitle>
+  <subtitle>行走在琥玖的码农&lt;/br&gt;专注JAVA领域相关技术</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.zhujunwang.cn/"/>
