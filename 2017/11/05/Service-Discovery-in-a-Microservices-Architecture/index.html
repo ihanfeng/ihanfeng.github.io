@@ -123,16 +123,16 @@
 <meta property="og:site_name" content="码农进阶之路">
 <meta property="og:description" content="这是关于使用微服务架构创建应用系列的第四篇文章。第一篇介绍了微服务架构的模式，讨论了使用微服务架构的优缺点。第二和第三篇描述了微服务架构内部的通讯机制。这篇文章中，我们将会探讨服务发现相关问题。 为什么要使用服务发现?设想一下，我们正在写代码使用了提供REST API或者Thrift API的服务，为了完成一次服务请求，代码需要知道服务实例的网络位置（IP地址和端口）。传统应用都运行在物理硬件上，">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/bfcc845a921c118b25959c7f534144bb.png">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/fa07cb312fb9f16ac094793b3aeae8cd.png">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/8d56ee2154b5f809fb055d5a894b7fed.png">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/feaf189840fb748843da73119fe83cdd.png">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/d30be665a883246607b13bed4e10e58c.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/bfcc845a921c118b25959c7f534144bb.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/fa07cb312fb9f16ac094793b3aeae8cd.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/8d56ee2154b5f809fb055d5a894b7fed.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/feaf189840fb748843da73119fe83cdd.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/d30be665a883246607b13bed4e10e58c.png">
 <meta property="og:updated_time" content="2018-09-12T14:28:41.637Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务实战（四）：服务发现的可行方案以及实践案例">
 <meta name="twitter:description" content="这是关于使用微服务架构创建应用系列的第四篇文章。第一篇介绍了微服务架构的模式，讨论了使用微服务架构的优缺点。第二和第三篇描述了微服务架构内部的通讯机制。这篇文章中，我们将会探讨服务发现相关问题。 为什么要使用服务发现?设想一下，我们正在写代码使用了提供REST API或者Thrift API的服务，为了完成一次服务请求，代码需要知道服务实例的网络位置（IP地址和端口）。传统应用都运行在物理硬件上，">
-<meta name="twitter:image" content="http://blog.zhujunwang.cn/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/bfcc845a921c118b25959c7f534144bb.png">
+<meta name="twitter:image" content="http://blog.zhujunwang.cn/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/bfcc845a921c118b25959c7f534144bb.png">
 
 
 
@@ -509,20 +509,20 @@
 <h1 id="为什么要使用服务发现"><a href="#为什么要使用服务发现" class="headerlink" title="为什么要使用服务发现?"></a>为什么要使用服务发现?</h1><p>设想一下，我们正在写代码使用了提供REST API或者Thrift API的服务，为了完成一次服务请求，代码需要知道服务实例的网络位置（IP地址和端口）。传统应用都运行在物理硬件上，服务实例的网络位置都是相对固定的。例如，代码可以从一个经常变更的配置文件中读取网络位置。</p>
 <a id="more"></a>
 <p>而对于一个现代的，基于云微服务的应用来说，这却是一个很麻烦的问题。其架构如图所示：</p>
-<img src="/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/bfcc845a921c118b25959c7f534144bb.png">
+<img src="/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/bfcc845a921c118b25959c7f534144bb.png">
 <p>服务实例的网络位置都是动态分配的，而且因为扩展、失效和升级等需求，服务实例会经常动态改变，因此，客户端代码需要使用一种更加复杂的服务发现机制。</p>
 <p>目前有两大类服务发现模式：客户端发现和服务端发现。</p>
 <p>我们先来来讨论一下客户端发现。</p>
 <h1 id="客户端发现模式"><a href="#客户端发现模式" class="headerlink" title="客户端发现模式"></a>客户端发现模式</h1><p>当使用客户端发现模式时，客户端负责决定相应服务实例的网络位置，并且对请求实现负载均衡。客户端从一个服务注册服务中查询，其中是所有可用服务实例的库。客户端使用负载均衡算法从多个服务实例中选择出一个，然后发出请求。</p>
 <p>下图显示的是这种模式的架构图：</p>
-<img src="/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/fa07cb312fb9f16ac094793b3aeae8cd.png">
+<img src="/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/fa07cb312fb9f16ac094793b3aeae8cd.png">
 <p>服务实例的网络位置是在启动时注册到服务注册表中，并且在服务终止时从注册表中删除。服务实例注册信息一般是使用心跳机制来定期刷新的。</p>
 <p>Netflix OSS提供了一种非常棒的客户端发现模式。Netflix Eureka是一个服务注册表，为服务实例注册管理和查询可用实例提供了REST API接口。Netflix Ribbon是一种IPC客户端，与Eureka合同工作实现对请求的负载均衡。我们会在后面详细讨论Eureka。</p>
 <p>客户端发现模式也是优缺点分明。这种模式相对比较直接，而且除了服务注册表，没有其它改变的因素。除此之外，因为客户端知道可用服务注册表信息，因此客户端可以通过使用哈希一致性（hashing consistently）变得更加聪明，更加有效的负载均衡。</p>
 <p>而这种模式一个最大的缺点是需要针对不同的编程语言注册不同的服务，在客户端需要为每种语言开发不同的服务发现逻辑。</p>
 <p>我们分析过客户端发现后，再看看服务端发现。</p>
 <h1 id="服务端发现模式"><a href="#服务端发现模式" class="headerlink" title="服务端发现模式"></a>服务端发现模式</h1><p>另外一种服务发现的模式是服务端发现模式（server-side discovery pattern），下图展现了这种模式的架构图：</p>
-<img src="/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/8d56ee2154b5f809fb055d5a894b7fed.png">
+<img src="/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/8d56ee2154b5f809fb055d5a894b7fed.png">
 <p>客户端通过负载均衡器向某个服务提出请求，负载均衡器向服务注册表发出请求，将每个请求转发往可用的服务实例。跟客户端发现一样，服务实例在服务注册表中注册或者注销。</p>
 <p>AWS Elastic Load Balancer（ELB）是一种服务端发现路由的例子，ELB一般用于均衡从网络来的访问流量，也可以使用ELB来均衡VPC内部的流量。客户端使用DNS，通过ELB发出请求（HTTP或者TCP）。ELB负载均衡器负责在注册的EC2实例或者ECS容器之间均衡负载，并不存在一个分离的服务注册表，而EC2实例和ECS实例也向ELB注册。</p>
 <p>HTTP服务和类似NGINX和NGINX Plus的负载均衡器都可以作为服务端发现均衡器。例如，这篇博文就描述如何使用Consul Template来动态配置NGINX反向代理。Consul Template是周期性从存放在Consul Template注册表中配置数据重建配置文件的工具。当文件发生变化时，会运行一个命令。在如上博客中，Consul Template产生了一个nginx.conf文件，用于配置反向代理，然后运行一个命令，告诉NGINX重新调入配置文件。更复杂的例子可以用HTTP API或者DNS动态重新配置NGINX Plus。</p>
@@ -543,12 +543,12 @@
 <p>现在我们来看看服务注册表的概念，看看服务实例是如何在注册表中注册的。</p>
 <h1 id="服务注册选项"><a href="#服务注册选项" class="headerlink" title="服务注册选项"></a>服务注册选项</h1><p>如前所述，服务实例必须向注册表中注册和注销，如何注册和注销也有一些不同的方式。一种方式是服务实例自己注册，也叫自注册模式（self-registration pattern）；另外一种方式是为其它系统提供服务实例管理的，也叫第三方注册模式（third party registration pattern）。我们来看看自注册模式。</p>
 <h2 id="自注册方式"><a href="#自注册方式" class="headerlink" title="自注册方式"></a>自注册方式</h2><p>当使用自注册模式时，服务实例负责在服务注册表中注册和注销。另外，如果需要的话，一个服务实例也要发送心跳来保证注册信息不会过时。下图描述了这种架构：</p>
-<img src="/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/feaf189840fb748843da73119fe83cdd.png">
+<img src="/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/feaf189840fb748843da73119fe83cdd.png">
 <p>一个很好地例子是 Netflix OSS Eureka client。Eureka客户端负责处理服务实例的注册和注销。Spring Cloud project，实现了多种模式，包括服务发现，使得向Eureka服务实例自动注册时更容易。可以用@EnableEurekaClient注释Java配置类。</p>
 <p>自注册模式也有优缺点。一个优点是，相对简单，不需要其他系统功能。而一个主要缺点则是，把服务实例跟服务注册表联系起来。必须在每种编程语言和框架内部实现注册代码。</p>
 <p>另外一个方法，不需要连接服务和注册表，则是第三方注册模式。</p>
 <h2 id="第三方注册模式"><a href="#第三方注册模式" class="headerlink" title="第三方注册模式"></a>第三方注册模式</h2><p>当使用第三方注册模式时，服务实例并不负责向服务注册表注册，而是由另外一个系统模块，叫做服务管理器，负责注册。服务管理器通过查询部署环境或订阅事件来跟踪运行服务的改变。当管理器发现一个新可用服务，会向注册表注册此服务。服务管理器也负责注销终止的服务实例。下图是这种模式的架构图。</p>
-<img src="/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/d30be665a883246607b13bed4e10e58c.png">
+<img src="/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/2017/11/05/Service-Discovery-in-a-Microservices-Architecture/d30be665a883246607b13bed4e10e58c.png">
 <p>一个服务管理器的例子是开源项目Registrator，负责自动注册和注销被部署为Docker容器的服务实例。Reistrator支持多种服务管理器，包括etcd和Consul。</p>
 <p>另外一个服务管理器例子是NetflixOSS Prana，主要面向非JVM语言开发的服务，也称为附带应用（sidecar application），Prana使用Netflix Eureka注册和注销服务实例。</p>
 <p>服务管理器是部署环境内置的模块。有自动扩充组创建的EC2实例可以自向ELB自动注册，Kubernetes服务自动注册并且对发现服务可用。</p>

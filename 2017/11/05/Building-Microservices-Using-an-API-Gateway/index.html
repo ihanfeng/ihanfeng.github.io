@@ -123,14 +123,14 @@
 <meta property="og:site_name" content="码农进阶之路">
 <meta property="og:description" content="摘要本系列的第一篇介绍了微服务架构模式。它讨论了采用微服务的优点和缺点，除了一些复杂的微服务，这种模式还是复杂应用的理想选择。 当你决定将应用作为一组微服务时，需要决定应用客户端如何与微服务交互。在单体式程序中，通常只有一组冗余的或者负载均衡的服务提供点。在微服务架构中，每一个微服务暴露一组细粒度的服务提供点。在本篇文章中，我们来看它如何影响客户端到服务端通信，同时提出一种API Gateway的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Using-an-API-Gateway/815d48350a8d3a4b11df4a62e6df077d.png">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Using-an-API-Gateway/dd914aa3f02ef4e8e820ce0238d2dbab.png">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Using-an-API-Gateway/e3af5a60b71f3d3fef53c1a5ccbfad78.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Using-an-API-Gateway/2017/11/05/Building-Microservices-Using-an-API-Gateway/815d48350a8d3a4b11df4a62e6df077d.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Using-an-API-Gateway/2017/11/05/Building-Microservices-Using-an-API-Gateway/dd914aa3f02ef4e8e820ce0238d2dbab.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Using-an-API-Gateway/2017/11/05/Building-Microservices-Using-an-API-Gateway/e3af5a60b71f3d3fef53c1a5ccbfad78.png">
 <meta property="og:updated_time" content="2018-09-12T14:28:41.597Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务实战（二）：使用API Gateway">
 <meta name="twitter:description" content="摘要本系列的第一篇介绍了微服务架构模式。它讨论了采用微服务的优点和缺点，除了一些复杂的微服务，这种模式还是复杂应用的理想选择。 当你决定将应用作为一组微服务时，需要决定应用客户端如何与微服务交互。在单体式程序中，通常只有一组冗余的或者负载均衡的服务提供点。在微服务架构中，每一个微服务暴露一组细粒度的服务提供点。在本篇文章中，我们来看它如何影响客户端到服务端通信，同时提出一种API Gateway的">
-<meta name="twitter:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Using-an-API-Gateway/815d48350a8d3a4b11df4a62e6df077d.png">
+<meta name="twitter:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Using-an-API-Gateway/2017/11/05/Building-Microservices-Using-an-API-Gateway/815d48350a8d3a4b11df4a62e6df077d.png">
 
 
 
@@ -509,7 +509,7 @@
 <a id="more"></a>
 <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>假定你正在为在线购物应用开发一个原生手机客户端。你需要实现一个产品最终页来展示商品信息。</p>
 <p>例如，下面的图展示了你在亚马逊Android客户端上滑动产品最终页时看到的信息。</p>
-<img src="/2017/11/05/Building-Microservices-Using-an-API-Gateway/815d48350a8d3a4b11df4a62e6df077d.png">
+<img src="/2017/11/05/Building-Microservices-Using-an-API-Gateway/2017/11/05/Building-Microservices-Using-an-API-Gateway/815d48350a8d3a4b11df4a62e6df077d.png">
 <p>虽然这是一个智能手机应用，这个产品最终页展示了非常多的信息。例如，不仅这里有产品基本信息（名字、描述和价格），还有以下内容：</p>
 <ul>
 <li>购物车中的物品数</li>
@@ -531,7 +531,7 @@
 <li>快递服务 – 快递选项、截止时间、来自不同快递API的成本计算</li>
 <li>推荐服务 – 推荐产品</li>
 </ul>
-<img src="/2017/11/05/Building-Microservices-Using-an-API-Gateway/dd914aa3f02ef4e8e820ce0238d2dbab.png">
+<img src="/2017/11/05/Building-Microservices-Using-an-API-Gateway/2017/11/05/Building-Microservices-Using-an-API-Gateway/dd914aa3f02ef4e8e820ce0238d2dbab.png">
 <p>我们需要决定移动客户端如何访问这些服务。请看下面这几种方式</p>
 <h1 id="客户端到微服务直接通信"><a href="#客户端到微服务直接通信" class="headerlink" title="客户端到微服务直接通信"></a>客户端到微服务直接通信</h1><p>理论上说，一个客户端可以直接给多个微服务中的任何一个发起请求。每一个微服务都会有一个对外服务端<a href="https://serviceName.api.company.name" target="_blank" rel="noopener">https://serviceName.api.company.name</a>。这个URL可能会映射到微服务的负载均衡上，它再转发请求到具体节点上。为了搜索产品细节，移动端需要向上述微服务逐个发请求。</p>
 <p>不幸的是，这个方案有很多困难和限制。其中一个问题是客户端的需求量与每个微服务暴露的细粒度API数量的不匹配。如图中，客户端需要7次单独请求。在更复杂的场景中，可能会需要更多次请求。例如，亚马逊的产品最终页要请求数百个微服务。虽然一个客户端可以通过LAN发起很多个请求，但是在公网上这样会很没有效率，这个问题在移动互联网上尤为突出。这个方案同时会导致客户端代码非常复杂。</p>
@@ -539,7 +539,7 @@
 <p>这个方案的另一个缺点是它很难重构微服务。随着时间的推移，我们可能需要改变系统微服务目前的切分方案。例如，我们可能需要将两个服务合并或者将一个服务拆分为多个。但是，如果客户端直接与微服务交互，那么这种重构就很难实施。</p>
 <p>由于上述三种问题的原因，客户端直接与服务器端通信的方式很少在实际中使用。</p>
 <h1 id="采用一个API-Gateway"><a href="#采用一个API-Gateway" class="headerlink" title="采用一个API Gateway"></a>采用一个API Gateway</h1><p>通常来说，一个更好的解决办法是采用API Gateway的方式。API Gateway是一个服务器，也可以说是进入系统的唯一节点。这跟面向对象设计模式中的Facade模式很像。API Gateway封装内部系统的架构，并且提供API给各个客户端。它还可能有其他功能，如授权、监控、负载均衡、缓存、请求分片和管理、静态响应处理等。下图展示了一个适应当前架构的API Gateway。</p>
-<img src="/2017/11/05/Building-Microservices-Using-an-API-Gateway/e3af5a60b71f3d3fef53c1a5ccbfad78.png">
+<img src="/2017/11/05/Building-Microservices-Using-an-API-Gateway/2017/11/05/Building-Microservices-Using-an-API-Gateway/e3af5a60b71f3d3fef53c1a5ccbfad78.png">
 <p>API Gateway负责请求转发、合成和协议转换。所有来自客户端的请求都要先经过API Gateway，然后路由这些请求到对应的微服务。API Gateway将经常通过调用多个微服务来处理一个请求以及聚合多个服务的结果。它可以在web协议与内部使用的非Web友好型协议间进行转换，如HTTP协议、WebSocket协议。</p>
 <p>API Gateway可以提供给客户端一个定制化的API。它暴露一个粗粒度API给移动客户端。以产品最终页这个使用场景为例。API Gateway提供一个服务提供点（/productdetails?productid=xxx）使得移动客户端可以在一个请求中检索到产品最终页的全部数据。API Gateway通过调用多个服务来处理这一个请求并返回结果，涉及产品信息、推荐、评论等。</p>
 <p>一个很好的API Gateway例子是Netfix API Gateway。Netflix流服务提供数百个不同的微服务，包括电视、机顶盒、智能手机、游戏系统、平板电脑等。起初，Netflix视图提供一个适用全场景的API。但是，他们发现这种形式不好用，因为涉及到各式各样的设备以及它们独特的需求。现在，他们采用一个API Gateway来提供容错性高的API，针对不同类型设备有相应代码。事实上，一个适配器处理一个请求平均要调用6到8个后端服务。Netflix API Gateway每天处理数十亿的请求。</p>

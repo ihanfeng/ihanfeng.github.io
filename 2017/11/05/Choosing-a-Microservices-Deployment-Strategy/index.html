@@ -123,14 +123,14 @@
 <meta property="og:site_name" content="码农进阶之路">
 <meta property="og:description" content="这篇博客是用微服务建应用的第六篇，第一篇介绍了微服务架构模板，并且讨论了使用微服务的优缺点。随后的文章讨论了微服务不同方面：使用API网关，进程间通讯，服务发现和事件驱动数据管理。这篇文章，我们将讨论部署微服务的策略。 动机部署一个单体式应用意味运行大型应用的多个副本，典型的提供若干个（N）服务器（物理或者虚拟），运行若干个（M）个应用实例。部署单体式应用不会很直接，但是肯定比部署微服务应用简单些">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/9b8137be4d481bf038e9a568f23ae605.png">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/eae6fb0117419955206ff2c31f7e13f6.png">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/21218b5289055b66c014aa8e62a1a7c6.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/9b8137be4d481bf038e9a568f23ae605.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/eae6fb0117419955206ff2c31f7e13f6.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/21218b5289055b66c014aa8e62a1a7c6.png">
 <meta property="og:updated_time" content="2018-09-12T14:28:41.603Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务实践（六）：选择微服务部署策略">
 <meta name="twitter:description" content="这篇博客是用微服务建应用的第六篇，第一篇介绍了微服务架构模板，并且讨论了使用微服务的优缺点。随后的文章讨论了微服务不同方面：使用API网关，进程间通讯，服务发现和事件驱动数据管理。这篇文章，我们将讨论部署微服务的策略。 动机部署一个单体式应用意味运行大型应用的多个副本，典型的提供若干个（N）服务器（物理或者虚拟），运行若干个（M）个应用实例。部署单体式应用不会很直接，但是肯定比部署微服务应用简单些">
-<meta name="twitter:image" content="http://blog.zhujunwang.cn/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/9b8137be4d481bf038e9a568f23ae605.png">
+<meta name="twitter:image" content="http://blog.zhujunwang.cn/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/9b8137be4d481bf038e9a568f23ae605.png">
 
 
 
@@ -510,7 +510,7 @@
 <a id="more"></a>
 <h1 id="单主机多服务实例模式"><a href="#单主机多服务实例模式" class="headerlink" title="单主机多服务实例模式"></a>单主机多服务实例模式</h1><p>部署微服务的一种方法就是单主机多服务实例模式，使用这种模式，需要提供若干台物理或者虚拟机，每台机器上运行多个服务实例。很多情况下，这是传统的应用部署方法。每个服务实例运行一个或者多个主机的well-known端口，主机可以看做宠物。</p>
 <p>下图展示的是这种架构：</p>
-<img src="/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/9b8137be4d481bf038e9a568f23ae605.png">
+<img src="/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/9b8137be4d481bf038e9a568f23ae605.png">
 <p>这种模式有一些参数，一个参数代表每个服务实例由多少进程构成。例如，需要在Apache Tomcat Server上部署一个Java服务实例作为web应用。一个Node.js服务实例可能有一个父进程和若干个子进程构成。</p>
 <p>另外一个参数定义同一进程组内有多少服务实例运行。例如，可以在同一个Apache Tomcat Server上运行多个Java web应用，或者在同一个OSGI容器内运行多个OSGI捆绑实例。</p>
 <p>单主机多服务实例模式也是优缺点并存。主要优点在于资源利用有效性。多服务实例共享服务器和操作系统，如果进程组运行多个服务实例效率会更高，例如，多个web应用共享同一个Apache Tomcat Server和JVM。</p>
@@ -522,7 +522,7 @@
 <p>可以看到，尽管熟悉，但是单主机多服务实例有很多严重缺陷。下面看看是否有其他部署微服务方式能够避免这些问题。</p>
 <h1 id="单主机单服务实例模式"><a href="#单主机单服务实例模式" class="headerlink" title="单主机单服务实例模式"></a>单主机单服务实例模式</h1><p>另外一种部署微服务方式是单主机单实例模式。当使用这种模式，每个主机上服务实例都是各自独立的。有两种不同实现模式：单虚拟机单实例和单容器单实例。</p>
 <h2 id="单虚拟机单实例模式"><a href="#单虚拟机单实例模式" class="headerlink" title="单虚拟机单实例模式"></a>单虚拟机单实例模式</h2><p>但是用单虚拟机单实例模式，一般将服务打包成虚拟机映像（image），例如一个Amazon EC2 AMI。每个服务实例是一个使用此映像启动的VM（例如，EC2实例）。下图展示了此架构：</p>
-<img src="/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/eae6fb0117419955206ff2c31f7e13f6.png">
+<img src="/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/eae6fb0117419955206ff2c31f7e13f6.png">
 <p>Netfix采用这种架构部署video streaming service。Netfix使用Aminator将每个服务打包成一个EC2 AMI。每个运行服务实例就是一个EC2实例。</p>
 <p>有很多工具可以用来搭建自己的VMs。可以配置持续集成（CI）服务（例如，Jenkins）避免Aminator将服务打包成EC2 AMI。packer.io是自动虚机映像创建的另外一种选择。跟Aminator不同，它支持一系列虚拟化技术，例如EC2，DigitalOcean，VirtualBox和VMware。​</p>
 <p>Boxfuse公司有一个创新方法创建虚机映像，克服了如下缺陷。Boxfuse将java应用打包成最小虚机映像，它们创建迅速，启动很快，因为对外暴露服务接口少而更加安全。</p>
@@ -537,7 +537,7 @@
 <p>那么我们来看看另外一种仍然具有虚机特性，但是比较轻量的微服务部署方法。</p>
 <h2 id="单容器单服务实例模式"><a href="#单容器单服务实例模式" class="headerlink" title="单容器单服务实例模式"></a>单容器单服务实例模式</h2><p>当使用这种模式时，每个服务实例都运行在各自容器中。容器是运行在操作系统层面的虚拟化机制。一个容器包含若干运行在沙箱中的进程。从进程角度来看，他们有各自的命名空间和根文件系统；可以限制容器的内存和CPU资源。某些容器还具有I/O限制，这类容器技术包括Docker和Solaris Zones。</p>
 <p>下图展示了这种模式：</p>
-<img src="/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/21218b5289055b66c014aa8e62a1a7c6.png">
+<img src="/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/2017/11/05/Choosing-a-Microservices-Deployment-Strategy/21218b5289055b66c014aa8e62a1a7c6.png">
 <p>​使用这种模式需要将服务打包成容器映像。一个容器映像是一个运行包含服务所需库和应用的文件系统​。某些容器映像由完整的linux根文件系统组成，其它则是轻量级的。例如，为了部署Java服务，需要创建包含Java运行库的容器映像，也许还要包含Apache Tomcat server，以及编译过的Java应用。</p>
 <p>一旦将服务打包成容器映像，就需要启动若干容器。一般在一个物理机或者虚拟机上运行多个容器，可能需要集群管理系统，例如k8s或者Marathon，来管理容器。集群管理系统将主机作为资源池，根据每个容器对资源的需求，决定将容器调度到那个主机上。</p>
 <p>单容器单服务实例模式也是优缺点都有。容器的优点跟虚机很相似，服务实例之间完全独立，可以很容易监控每个容器消耗的资源。跟虚机相似，容器使用隔离技术部署服务。容器管理API也可以作为管理服务的API。</p>

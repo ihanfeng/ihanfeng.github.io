@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.zhujunwang.cn/"/>
-  <updated>2018-09-13T14:45:11.402Z</updated>
+  <updated>2018-09-13T14:47:59.142Z</updated>
   <id>http://blog.zhujunwang.cn/</id>
   
   <author>
@@ -21,18 +21,15 @@
     <link href="http://blog.zhujunwang.cn/2018/09/13/proxy-mode-of-java-design-pattern/"/>
     <id>http://blog.zhujunwang.cn/2018/09/13/proxy-mode-of-java-design-pattern/</id>
     <published>2018-09-13T13:33:13.000Z</published>
-    <updated>2018-09-13T14:45:11.402Z</updated>
+    <updated>2018-09-13T14:47:59.142Z</updated>
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;&lt;p&gt;为其他对象提供一种代理便以控制这个对象的访问。&lt;/p&gt;
-&lt;h2 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot;
-        
-      
+      &lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;&lt;p&gt;为其他对象提供一种代理便以控制这个对象的访问。&lt;/p&gt;
+&lt;h2 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h2&gt;&lt;p&gt;代理模式（Proxy）属于结构型模式，也叫委托模式。&lt;/p&gt;
+&lt;p&gt;代理模式的特征是&lt;strong&gt;代理类&lt;/strong&gt;与&lt;strong&gt;委托类&lt;/strong&gt;实现同样的接口，代理类主要负责为委托类预处理消息，过滤消息，把消息&lt;strong&gt;转发&lt;/strong&gt;给委托类，以及事后消息处理。&lt;/p&gt;
+&lt;p&gt;代理类与委托类之间通常会存在关联关系，一个代理类的对象与一个委托类的对象关联，代理类的对象本身并不真正实现服务，而是通过调用委托类的对象的相关方法，来提供特定的服务。&lt;/p&gt;
+&lt;p&gt;日常生活中，代购，买房、租房都是属于常见的代理模式。&lt;br&gt;&lt;/p&gt;
     
     </summary>
     

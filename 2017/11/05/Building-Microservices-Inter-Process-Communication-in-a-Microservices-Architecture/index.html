@@ -123,17 +123,17 @@
 <meta property="og:site_name" content="码农进阶之路">
 <meta property="og:description" content="摘要这是采用微服务架构创建自己应用系列第三篇文章。第一篇介绍了微服务架构模式，和单体式模式进行了比较，并且讨论了使用微服务架构的优缺点。第二篇描述了采用微服务架构应用客户端之间如何采用API Gateway方式进行通信。在这篇文章中，我们将讨论系统服务之间如何通信。 简介在单体式应用中，各个模块之间的调用是通过编程语言级别的方法或者函数来实现的。但是一个基于微服务的分布式应用是运行在多台机器上的。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/1fc9e63825109680c7138b786c6e1c24.png">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/ab63cad76d0743e8a77c423eda919a24.jpg">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/6c6cc8293d2a8334327902edcd32167d.png">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/4eb9c81e3bb9606f75eccb4f71cc84cb.png">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/0855ed5ec97708bac54acd80af43641e.png">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/188f16abf54a6fc3446d51dc3625e571.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/1fc9e63825109680c7138b786c6e1c24.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/ab63cad76d0743e8a77c423eda919a24.jpg">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/6c6cc8293d2a8334327902edcd32167d.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/4eb9c81e3bb9606f75eccb4f71cc84cb.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/0855ed5ec97708bac54acd80af43641e.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/188f16abf54a6fc3446d51dc3625e571.png">
 <meta property="og:updated_time" content="2018-09-12T14:28:41.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务实战（三）：深入微服务架构的进程间通信">
 <meta name="twitter:description" content="摘要这是采用微服务架构创建自己应用系列第三篇文章。第一篇介绍了微服务架构模式，和单体式模式进行了比较，并且讨论了使用微服务架构的优缺点。第二篇描述了采用微服务架构应用客户端之间如何采用API Gateway方式进行通信。在这篇文章中，我们将讨论系统服务之间如何通信。 简介在单体式应用中，各个模块之间的调用是通过编程语言级别的方法或者函数来实现的。但是一个基于微服务的分布式应用是运行在多台机器上的。">
-<meta name="twitter:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/1fc9e63825109680c7138b786c6e1c24.png">
+<meta name="twitter:image" content="http://blog.zhujunwang.cn/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/1fc9e63825109680c7138b786c6e1c24.png">
 
 
 
@@ -509,7 +509,7 @@
         <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>这是采用微服务架构创建自己应用系列第三篇文章。第一篇介绍了微服务架构模式，和单体式模式进行了比较，并且讨论了使用微服务架构的优缺点。第二篇描述了采用微服务架构应用客户端之间如何采用API Gateway方式进行通信。在这篇文章中，我们将讨论系统服务之间如何通信。</p>
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>在单体式应用中，各个模块之间的调用是通过编程语言级别的方法或者函数来实现的。但是一个基于微服务的分布式应用是运行在多台机器上的。一般来说，每个服务实例都是一个进程。因此，如下图所示，服务之间的交互必须通过进程间通信（IPC）来实现。</p>
 <a id="more"></a>
-<img src="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/1fc9e63825109680c7138b786c6e1c24.png">
+<img src="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/1fc9e63825109680c7138b786c6e1c24.png">
 <p>后面我们将会详细介绍IPC技术，现在我们先来看下设计相关的问题。</p>
 <h1 id="交互模式"><a href="#交互模式" class="headerlink" title="交互模式"></a>交互模式</h1><p>当为某一个服务选择IPC时，首先需要考虑服务之间如何交互。客户端和服务器之间有很多的交互模式，我们可以从两个维度进行归类。第一个维度是一对一还是一对多：</p>
 <ul>
@@ -522,7 +522,7 @@
 <li>异步模式：客户端请求不会阻塞进程，服务端的响应可以是非即时的。</li>
 </ul>
 <p>下表显示了不同交互模式：</p>
-<img src="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/ab63cad76d0743e8a77c423eda919a24.jpg">
+<img src="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/ab63cad76d0743e8a77c423eda919a24.jpg">
 <p>一对一的交互模式有以下几种方式：</p>
 <ul>
 <li>请求/响应：一个客户端向服务器端发起请求，等待响应。客户端期望此响应即时到达。在一个基于线程的应用中，等待过程可能造成线程阻塞。</li>
@@ -537,7 +537,7 @@
 </li>
 </ul>
 <p>每个服务都是以上这些模式的组合，对某些服务，一个IPC机制就足够了；而对另外一些服务则需要多种IPC机制组合。下图展示了在一个打车服务请求中服务之间是如何通信的。</p>
-<img src="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/6c6cc8293d2a8334327902edcd32167d.png">
+<img src="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/6c6cc8293d2a8334327902edcd32167d.png">
 <p>上图中的服务通信使用了通知、请求/响应、发布/订阅等方式。例如，乘客通过移动端给『行程管理服务』发送通知，希望申请一次出租服务。『行程管理服务』发送请求/响应消息给『乘客服务』以确认乘客账号是有效的。紧接着创建此次行程，并用发布/订阅交互模式通知其他服务，包括定位可用司机的调度服务。</p>
 <p>现在我们了解了交互模式，接下来我们一起来看看如何定义API。</p>
 <h1 id="定义API"><a href="#定义API" class="headerlink" title="定义API"></a>定义API</h1><p>API是服务端和客户端之间的契约。不管选择了什么样的IPC机制，重要的是使用某种交互式定义语言（IDL）来精确定义一个服务的API。甚至有一些关于使用API first的方法（API-first approach）来定义服务的很好的理由。在开发之前，你需要先定义服务的接口，并与客户端开发者详细讨论确认。这样的讨论和设计会大幅度提到API的可用度以及满意度。</p>
@@ -547,7 +547,7 @@
 <p>但是有时候，API需要进行大规模的改动，并且可能与之前版本不兼容。因为你不可能强制让所有的客户端立即升级，所以支持老版本客户端的服务还需要再运行一段时间。如果你正在使用基于基于HTTP机制的IPC，例如REST，一种解决方案是把版本号嵌入到URL中。每个服务都可能同时处理多个版本的API。或者，你可以部署多个实例，每个实例负责处理一个版本的请求。</p>
 <h1 id="处理部分失败"><a href="#处理部分失败" class="headerlink" title="处理部分失败"></a>处理部分失败</h1><p>在上一篇关于API gateway的文章中，我们了解到分布式系统中部分失败是普遍存在的问题。因为客户端和服务端是都是独立的进程，一个服务端有可能因为故障或者维护而停止服务，或者此服务因为过载停止或者反应很慢。</p>
 <p>考虑这篇文章中描述的部分失败的场景。假设推荐服务无法响应请求，那客户端就会由于等待响应而阻塞，这不仅会给客户带来很差的体验，而且在很多应用中还会占用很多资源，比如线程，以至于到最后由于等待响应被阻塞的客户端越来越多，线程资源被耗费完了。如下图所示：</p>
-<img src="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/4eb9c81e3bb9606f75eccb4f71cc84cb.png">
+<img src="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/4eb9c81e3bb9606f75eccb4f71cc84cb.png">
 <p>为了预防这种问题，设计服务时候必须要考虑部分失败的问题。</p>
 <p>Netfilix提供了一个比较好的解决方案，具体的应对措施包括：</p>
 <p>• 网络超时：当等待响应时，不要无限期的阻塞，而是采用超时策略。使用超时策略可以确保资源不会无限期的占用。<br>• 限制请求的次数：可以为客户端对某特定服务的请求设置一个访问上限。如果请求已达上限，就要立刻终止请求服务。<br>• 断路器模式（Circuit Breaker Pattern）：记录成功和失败请求的数量。如果失效率超过一个阈值，触发断路器使得后续的请求立刻失败。如果大量的请求失败，就可能是这个服务不可用，再发请求也无意义。在一个失效期后，客户端可以再试，如果成功，关闭此断路器。<br>• 提供回滚：当一个请求失败后可以进行回滚逻辑。例如，返回缓存数据或者一个系统默认值。</p>
@@ -556,7 +556,7 @@
 <p>当使用基于异步交换消息的进程通信方式时，一个客户端通过向服务端发送消息提交请求。如果服务端需要回复，则会发送另外一个独立的消息给客户端。因为通信是异步的，客户端不会因为等待而阻塞，相反，客户端理所当然的认为响应不会立刻接收到。</p>
 <p>一个消息由头部（元数据例如发送方）和消息体构成。消息通过channel发送，任何数量的生产者都可以发送消息到channel，同样的，任何数量的消费者都可以从渠道中接受数据。有两类channel，点对点和发布/订阅。点对点channel会把消息准确的发送到某个从channel读取消息的消费者，服务端使用点对点来实现之前提到的一对一交互模式；而发布/订阅则把消息投送到所有从channel读取数据的消费者，服务端使用发布/订阅channel来实现上面提到的一对多交互模式。</p>
 <p>下图展示了打车软件如何使用发布/订阅：</p>
-<img src="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/0855ed5ec97708bac54acd80af43641e.png">
+<img src="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/0855ed5ec97708bac54acd80af43641e.png">
 <p>行程管理服务在发布-订阅channel内创建一个行程消息，并通知调度服务有一个新的行程请求，调度服务发现一个可用的司机然后向发布-订阅channel写入司机建议消息（Driver Proposed message）来通知其他服务。</p>
 <p>有很多消息系统可以选择，最好选择一种支持多编程语言的。一些消息系统支持标准协议，例如AMQP和STOMP。其他消息系统则使用独有的协议，有大量开源消息系统可选，比如RabbitMQ、Apache Kafka、Apache ActiveMQ和NSQ。它们都支持某种形式的消息和channel，并且都是可靠的、高性能和可扩展的；然而，它们的消息模型完全不同。</p>
 <p>使用消息机制有很多优点：</p>
@@ -585,7 +585,7 @@
 <p>当需要一个整体的、重视模块交互可扩展性、接口概括性、组件部署独立性和减小延迟、提供安全性和封装性的系统时，REST可以提供这样一组满足需求的架构。</p>
 </blockquote>
 <p>下图展示了打车软件是如何使用REST的。</p>
-<img src="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/188f16abf54a6fc3446d51dc3625e571.png">
+<img src="/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/2017/11/05/Building-Microservices-Inter-Process-Communication-in-a-Microservices-Architecture/188f16abf54a6fc3446d51dc3625e571.png">
 <p>乘客通过移动端向行程管理服务的/trips资源提交了一个POST请求。行程管理服务收到请求之后，会发送一个GET请求到乘客管理服务以获取乘客信息。当确认乘客信息之后，紧接着会创建一个行程，并向移动端返回201（译者注：状态码）响应。</p>
 <p>很多开发者都表示他们基于HTTP的API是RESTful的。但是，如同Fielding在他的博客中所说，这些API可能并不都是RESTful的。Leonard Richardson为REST定义了一个成熟度模型，具体包含以下4个层次（摘自IBM）：</p>
 <ul>

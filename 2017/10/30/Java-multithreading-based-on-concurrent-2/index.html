@@ -123,13 +123,13 @@
 <meta property="og:site_name" content="码农进阶之路">
 <meta property="og:description" content="进程和线程进程是指处于运行过程中的程序，并且具有一定的独立性。进程是系统进行资源分配和调度的一个单位。当程序进入内存运行时，即为进程。 进程特点 独立性 进程是系统中独立存在的实体，它可以独立拥有资源，每一个进程都有自己独立的地址空间，没有进程本身的运行，用户进程不可以直接访问其他进程的地址空间。  动态性 进程和程序的区别在于进程是动态的，进程中有时间的概念，进程具有自己的生命周期和各种不同的状">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/10/30/Java-multithreading-based-on-concurrent-2/concurrent-2-1.png">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/10/30/Java-multithreading-based-on-concurrent-2/concurrent-2-2.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/10/30/Java-multithreading-based-on-concurrent-2/2017/10/30/Java-multithreading-based-on-concurrent-2/concurrent-2-1.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/10/30/Java-multithreading-based-on-concurrent-2/2017/10/30/Java-multithreading-based-on-concurrent-2/concurrent-2-2.png">
 <meta property="og:updated_time" content="2018-09-12T14:28:41.625Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Java并发】之多线程基础(2)">
 <meta name="twitter:description" content="进程和线程进程是指处于运行过程中的程序，并且具有一定的独立性。进程是系统进行资源分配和调度的一个单位。当程序进入内存运行时，即为进程。 进程特点 独立性 进程是系统中独立存在的实体，它可以独立拥有资源，每一个进程都有自己独立的地址空间，没有进程本身的运行，用户进程不可以直接访问其他进程的地址空间。  动态性 进程和程序的区别在于进程是动态的，进程中有时间的概念，进程具有自己的生命周期和各种不同的状">
-<meta name="twitter:image" content="http://blog.zhujunwang.cn/2017/10/30/Java-multithreading-based-on-concurrent-2/concurrent-2-1.png">
+<meta name="twitter:image" content="http://blog.zhujunwang.cn/2017/10/30/Java-multithreading-based-on-concurrent-2/2017/10/30/Java-multithreading-based-on-concurrent-2/concurrent-2-1.png">
 
 
 
@@ -525,7 +525,7 @@
 <h3 id="并行和并发区别："><a href="#并行和并发区别：" class="headerlink" title="并行和并发区别："></a>并行和并发区别：</h3><p>并行：同一时刻可以处理多个任务</p>
 <p>并发：统一时刻只能处理1个任务，但在一段时间内可以对多个任务交替处理</p>
 <p>图示说明：</p>
-<img src="/2017/10/30/Java-multithreading-based-on-concurrent-2/concurrent-2-1.png">
+<img src="/2017/10/30/Java-multithreading-based-on-concurrent-2/2017/10/30/Java-multithreading-based-on-concurrent-2/concurrent-2-1.png">
 <h2 id="线程特点"><a href="#线程特点" class="headerlink" title="线程特点"></a>线程特点</h2><p>线程是进程的组成部分，一个进程可以拥有多个线程，而一个线程必须拥有一个父进程。线程可以拥有自己的堆栈，自己的程序计数器和自己的局部变量，但不能拥有系统资源。它与父进程的其他线程共享该进程的所有资源。</p>
 <p>线程可以完成一定任务，可以和其它线程共享父进程的共享变量和部分环境，相互协作来完成任务。</p>
 <p>线程是独立运行的，其不知道进程中是否还有其他线程存在。</p>
@@ -584,7 +584,7 @@
 </li>
 </ol>
 <p>线程整个周期状态图如下：</p>
-<img src="/2017/10/30/Java-multithreading-based-on-concurrent-2/concurrent-2-2.png">
+<img src="/2017/10/30/Java-multithreading-based-on-concurrent-2/2017/10/30/Java-multithreading-based-on-concurrent-2/concurrent-2-2.png">
 <p>从图中可以看出，线程从阻塞状态只能进入就绪状态，无法直接进入运行状态。而就绪和运行状态之间的转换通常不受程序控制，而是由系统线程调度所决定。当处于就绪状态的线程获得处理器资源时，该线程进入运行状态；当处于运行状态的线程失去处理器资源时，该线程进入就绪状态。但有一个方法例外，调用yield()方法可以让运行状态的线程转入就绪状态。</p>
 <h2 id="线程死亡"><a href="#线程死亡" class="headerlink" title="线程死亡"></a>线程死亡</h2><h3 id="死亡状态"><a href="#死亡状态" class="headerlink" title="死亡状态"></a>死亡状态</h3><p>线程会以如下3种方式结束，结束后就处于死亡状态：</p>
 <ol>

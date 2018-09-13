@@ -123,14 +123,14 @@
 <meta property="og:site_name" content="码农进阶之路">
 <meta property="og:description" content="摘要这是用微服务开发应用系列博客的第七篇也是最后一篇。第一篇中介绍了微服务架构模式，并且讨论了微服架构的优缺点；接续文章讨论了微服务架构不同方面：使用API网关，进程间通信，服务发现，事件驱动数据管理以及部署微服务。本篇，我们将探讨将应用从单体式架构迁移到微服务架构需要考虑的策略。 迁移到微服务综述迁移单体式应用到微服务架构意味着一系列现代化过程，有点像这几代开发者一直在做的事情，实时上，当迁移时">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Refactoring-a-Monolith-into-Microservices/bd522c0e83dc6711ac8f45ddb0e4953e.png">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Refactoring-a-Monolith-into-Microservices/06f0558f417656d0a5b90534ba9ca12e.png">
-<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Refactoring-a-Monolith-into-Microservices/3315a18a492bcb117aa9db238c2192db.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Refactoring-a-Monolith-into-Microservices/2017/11/05/Refactoring-a-Monolith-into-Microservices/bd522c0e83dc6711ac8f45ddb0e4953e.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Refactoring-a-Monolith-into-Microservices/2017/11/05/Refactoring-a-Monolith-into-Microservices/06f0558f417656d0a5b90534ba9ca12e.png">
+<meta property="og:image" content="http://blog.zhujunwang.cn/2017/11/05/Refactoring-a-Monolith-into-Microservices/2017/11/05/Refactoring-a-Monolith-into-Microservices/3315a18a492bcb117aa9db238c2192db.png">
 <meta property="og:updated_time" content="2018-09-12T14:28:41.634Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微服务实践（七）：从单体式架构迁移到微服务架构">
 <meta name="twitter:description" content="摘要这是用微服务开发应用系列博客的第七篇也是最后一篇。第一篇中介绍了微服务架构模式，并且讨论了微服架构的优缺点；接续文章讨论了微服务架构不同方面：使用API网关，进程间通信，服务发现，事件驱动数据管理以及部署微服务。本篇，我们将探讨将应用从单体式架构迁移到微服务架构需要考虑的策略。 迁移到微服务综述迁移单体式应用到微服务架构意味着一系列现代化过程，有点像这几代开发者一直在做的事情，实时上，当迁移时">
-<meta name="twitter:image" content="http://blog.zhujunwang.cn/2017/11/05/Refactoring-a-Monolith-into-Microservices/bd522c0e83dc6711ac8f45ddb0e4953e.png">
+<meta name="twitter:image" content="http://blog.zhujunwang.cn/2017/11/05/Refactoring-a-Monolith-into-Microservices/2017/11/05/Refactoring-a-Monolith-into-Microservices/bd522c0e83dc6711ac8f45ddb0e4953e.png">
 
 
 
@@ -511,7 +511,7 @@
 <a id="more"></a>
 <p>我们来看看其他可行策略。</p>
 <h1 id="策略1——停止挖掘"><a href="#策略1——停止挖掘" class="headerlink" title="策略1——停止挖掘"></a>策略1——停止挖掘</h1><p>Law of Holes是说当自己进洞就应该停止挖掘。对于单体式应用不可管理时这是最佳建议。换句话说，应该停止让单体式应用继续变大，也就是说当开发新功能时不应该为旧单体应用添加新代码，最佳方法应该是将新功能开发成独立微服务。如下图所示：</p>
-<img src="/2017/11/05/Refactoring-a-Monolith-into-Microservices/bd522c0e83dc6711ac8f45ddb0e4953e.png">
+<img src="/2017/11/05/Refactoring-a-Monolith-into-Microservices/2017/11/05/Refactoring-a-Monolith-into-Microservices/bd522c0e83dc6711ac8f45ddb0e4953e.png">
 <p>除了新服务和传统应用，还有两个模块，其一是请求路由器，负责处理入口（http）请求，有点像之前提到的API网关。路由器将新功能请求发送给新开发的服务，而将传统请求还发给单体式应用。</p>
 <p>另外一个是胶水代码（glue code），将微服务和单体应用集成起来，微服务很少能独立存在，经常会访问单体应用的数据。胶水代码，可能在单体应用或者为服务或者二者兼而有之，负责数据整合。微服务通过胶水代码从单体应用中读写数据。​</p>
 <p>微服务有三种方式访问单体应用数据：</p>
@@ -531,7 +531,7 @@
 <li>数据访问层——访问基础元素，例如数据库和消息代理​</li>
 </ul>
 <p>在表现层与业务数据访问层之间有清晰的隔离。业务层有由若干方面组成的粗粒度（coarse-grained）的API，内部包含了业务逻辑元素。API是可以将单体业务分割成两个更小应用的天然边界，其中一个应用是表现层，另外一个是业务和数据访问逻辑。分割后，表现逻辑应用远程调用业务逻辑应用，下图表示迁移前后架构不同：​</p>
-<img src="/2017/11/05/Refactoring-a-Monolith-into-Microservices/06f0558f417656d0a5b90534ba9ca12e.png">
+<img src="/2017/11/05/Refactoring-a-Monolith-into-Microservices/2017/11/05/Refactoring-a-Monolith-into-Microservices/06f0558f417656d0a5b90534ba9ca12e.png">
 <p>单体应用这么分割有两个好处，其一使得应用两部分开发、部署和扩展各自独立，特别地，允许表现层开发者在用户界面上快速选择，进行A/B测试；其二，使得一些远程API可以被微服务调用。</p>
 <p>然而，这种策略只是部分的解决方案。很可能应用的两部分之一或者全部都是不可管理的，因此需要使用第三种策略来消除剩余的单体架构。</p>
 <h1 id="策略3——抽出服务"><a href="#策略3——抽出服务" class="headerlink" title="策略3——抽出服务"></a>策略3——抽出服务</h1><p>第三种迁移策略就是从单体应用中抽取出某些模块成为独立微服务。每当抽取一个模块变成微服务，单体应用就变简单一些；一旦转换足够多的模块，单体应用本身已经不成为问题了，要么消失了，要么简单到成为一个服务。</p>
@@ -541,7 +541,7 @@
 <p>查找现有粗粒度边界来决定哪个模块应该被抽取，也是很有益的，这使得移植工作更容易和简单。例如，只与其他应用异步同步消息的模块就是一个明显边界，可以很简单容易地将其转换为微服务。</p>
 <h2 id="如何抽取模块"><a href="#如何抽取模块" class="headerlink" title="如何抽取模块"></a>如何抽取模块</h2><p>抽取模块第一步就是定义好模块和单体应用之间粗粒度接口，由于单体应用需要微服务的数据，反之亦然，因此更像是一个双向API。因为必须在负责依赖关系和细粒度接口模式之间做好平衡，因此开发这种API很有挑战性，尤其对使用域模型模式的业务逻辑层来说更具有挑战，因此经常需要改变代码来解决依赖性问题，如图所示：</p>
 <p>​一旦完成粗粒度接口，也就将此模块转换成独立微服务。为了实现，必须写代码使得单体应用和微服务之间通过使用进程间通信（IPC）机制的API来交换信息。如图所示迁移前后对比：</p>
-<img src="/2017/11/05/Refactoring-a-Monolith-into-Microservices/3315a18a492bcb117aa9db238c2192db.png">
+<img src="/2017/11/05/Refactoring-a-Monolith-into-Microservices/2017/11/05/Refactoring-a-Monolith-into-Microservices/3315a18a492bcb117aa9db238c2192db.png">
 <p>此例中，正在使用Y模块的Z模块是备选抽取模块，其元素正在被X模块使用，迁移第一步就是定义一套粗粒度APIs，第一个接口应该是被X模块使用的内部接口，用于激活Z模块；第二个接口是被Z模块使用的外部接口，用于激活Y模块。</p>
 <p>迁移第二步就是将模块转换成独立服务。内部和外部接口都使用基于IPC机制的代码，一般都会将Z模块整合成一个微服务基础框架，来出来割接过程中的问题，例如服务发现。</p>
 <p>抽取完模块，也就可以开发、部署和扩展另外一个服务，此服务独立于单体应用和其它服务。可以从头写代码实现服务；这种情况下，将服务和单体应用整合的API代码成为容灾层，在两种域模型之间进行翻译工作。每抽取一个服务，就朝着微服务方向前进一步。随着时间推移，单体应用将会越来越简单，用户就可以增加更多独立的微服务。</p>
