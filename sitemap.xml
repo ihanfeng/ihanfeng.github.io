@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.zhujunwang.cn/2018/09/13/proxy-mode-of-java-design-pattern/</loc>
+    
+    <lastmod>2018-09-13T14:45:11.402Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.zhujunwang.cn/2017/11/11/CentOS7-installs-MariaDB/</loc>
     
-    <lastmod>2018-09-12T15:18:31.387Z</lastmod>
+    <lastmod>2018-09-13T01:38:09.553Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.zhujunwang.cn/about/index.html</loc>
+    
+    <lastmod>2018-09-13T00:58:28.963Z</lastmod>
     
   </url>
   
@@ -152,13 +166,6 @@
     <loc>http://blog.zhujunwang.cn/categories/index.html</loc>
     
     <lastmod>2018-09-12T07:22:48.306Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.zhujunwang.cn/about/index.html</loc>
-    
-    <lastmod>2018-09-12T07:22:48.298Z</lastmod>
     
   </url>
   

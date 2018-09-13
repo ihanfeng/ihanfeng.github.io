@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.zhujunwang.cn/"/>
-  <updated>2018-09-12T15:18:31.387Z</updated>
+  <updated>2018-09-13T14:45:11.402Z</updated>
   <id>http://blog.zhujunwang.cn/</id>
   
   <author>
@@ -17,11 +17,46 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Java设计模式之代理模式</title>
+    <link href="http://blog.zhujunwang.cn/2018/09/13/proxy-mode-of-java-design-pattern/"/>
+    <id>http://blog.zhujunwang.cn/2018/09/13/proxy-mode-of-java-design-pattern/</id>
+    <published>2018-09-13T13:33:13.000Z</published>
+    <updated>2018-09-13T14:45:11.402Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;定义&quot;&gt;&lt;a href=&quot;#定义&quot; class=&quot;headerlink&quot; title=&quot;定义&quot;&gt;&lt;/a&gt;定义&lt;/h2&gt;&lt;p&gt;为其他对象提供一种代理便以控制这个对象的访问。&lt;/p&gt;
+&lt;h2 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="JAVA" scheme="http://blog.zhujunwang.cn/categories/JAVA/"/>
+    
+      <category term="设计模式" scheme="http://blog.zhujunwang.cn/categories/JAVA/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="JAVA" scheme="http://blog.zhujunwang.cn/tags/JAVA/"/>
+    
+      <category term="设计模式" scheme="http://blog.zhujunwang.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="代理模式" scheme="http://blog.zhujunwang.cn/tags/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="proxy" scheme="http://blog.zhujunwang.cn/tags/proxy/"/>
+    
+  </entry>
+  
+  <entry>
     <title>CentOS7安装MariaDB</title>
     <link href="http://blog.zhujunwang.cn/2017/11/11/CentOS7-installs-MariaDB/"/>
     <id>http://blog.zhujunwang.cn/2017/11/11/CentOS7-installs-MariaDB/</id>
-    <published>2017-11-11T03:37:20.000Z</published>
-    <updated>2018-09-12T15:18:31.387Z</updated>
+    <published>2017-11-11T03:37:00.000Z</published>
+    <updated>2018-09-13T01:38:09.553Z</updated>
     
     <summary type="html">
     
@@ -612,29 +647,6 @@
     
     
       <category term="Gradle" scheme="http://blog.zhujunwang.cn/tags/Gradle/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用 GitHub Pages and Hexo 搭建免费个人博客</title>
-    <link href="http://blog.zhujunwang.cn/2017/09/24/How-to-build-a-personal-blog-using-GitHub-Pages-and-Hexo/"/>
-    <id>http://blog.zhujunwang.cn/2017/09/24/How-to-build-a-personal-blog-using-GitHub-Pages-and-Hexo/</id>
-    <published>2017-09-24T06:30:26.000Z</published>
-    <updated>2018-09-12T14:28:41.608Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Hexo介绍&quot;&gt;&lt;a href=&quot;#Hexo介绍&quot; class=&quot;headerlink&quot; title=&quot;Hexo介绍&quot;&gt;&lt;/a&gt;Hexo介绍&lt;/h1&gt;&lt;p&gt;  Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。&lt;/p&gt;
-&lt;p&gt;  官网：&lt;a href=&quot;https://hexo.io/zh-cn/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Hexo" scheme="http://blog.zhujunwang.cn/categories/Hexo/"/>
-    
-    
-      <category term="github" scheme="http://blog.zhujunwang.cn/tags/github/"/>
-    
-      <category term="hexo" scheme="http://blog.zhujunwang.cn/tags/hexo/"/>
     
   </entry>
   
